@@ -1,0 +1,113 @@
+.country-ranking {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  padding: 12px 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.country-ranking__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.country-ranking__metric {
+  font-size: 10px;
+  font-weight: 500;
+  color: #27ae60;
+  background: rgba(39,174,96,0.1);
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.country-ranking__empty {
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 14px 0;
+}
+
+.country-ranking__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.country-ranking__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 4px;
+  border-radius: 4px;
+  transition: background var(--transition);
+}
+
+.country-ranking__item:hover {
+  background: rgba(0,48,73,0.04);
+}
+
+.country-ranking__rank {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.country-ranking__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.country-ranking__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+
+.country-ranking__name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.country-ranking__value {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.country-ranking__bar-bg {
+  width: 100%;
+  height: 5px;
+  background: rgba(0,48,73,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.country-ranking__bar {
+  height: 100%;
+  background: #27ae60;
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

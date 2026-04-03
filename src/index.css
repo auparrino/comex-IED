@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* === Comex variable names === */
+  --dark-red: #780000;
+  --red: #C1121F;
+  --cream: #FDF0D5;
+  --dark-blue: #003049;
+  --blue: #669BBC;
+  --bg: #FDF0D5;
+  --bg-card: #fff8eb;
+  --bg-card-hover: #f5e6c8;
+  --text: #003049;
+  --text-muted: #4a6a7a;
+  --text-dim: #7a9aaa;
+  --border: #d4c4a0;
+  --exports: #669BBC;
+  --exports-light: #8ab4cc;
+  --imports: #C1121F;
+  --imports-light: #d44a54;
+  --surplus: #669BBC;
+  --deficit: #C1121F;
+
+  /* === FDI variable names (aliases to same values) === */
+  --bg-primary: #FDF0D5;
+  --bg-secondary: #fff8eb;
+  --bg-card-fdi: rgba(0,48,73,0.04);
+  --bg-card-hover-fdi: rgba(0,48,73,0.06);
+  --bg-input: rgba(0,48,73,0.04);
+  --border-fdi: rgba(0,48,73,0.12);
+  --border-light: rgba(0,48,73,0.08);
+  --text-primary: #003049;
+  --text-secondary: rgba(0,48,73,0.75);
+  --text-muted-fdi: rgba(0,48,73,0.5);
+  --text-dim-fdi: rgba(0,48,73,0.35);
+  --accent-blue: #1a6fa3;
+  --accent-blue-light: #669BBC;
+  --accent-blue-dim: rgba(26,111,163,0.1);
+  --accent-green: #17a589;
+  --accent-green-dim: rgba(23,165,137,0.1);
+  --accent-red: #C1121F;
+  --accent-red-dim: rgba(193,18,31,0.1);
+  --accent-amber: #d4a800;
+  --accent-amber-dim: rgba(212,168,0,0.1);
+  --card-radius: 6px;
+  --transition: 0.15s ease;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-dim);
+}
+
+/* MapLibre popup overrides (cream theme) */
+.maplibregl-popup-content {
+  background: var(--bg-card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--card-radius) !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 2px 8px rgba(0,48,73,0.08) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 13px !important;
+}
+.maplibregl-popup-tip {
+  border-top-color: var(--bg-card) !important;
+}
+.maplibregl-popup-close-button {
+  color: var(--text-muted) !important;
+  font-size: 16px !important;
+}

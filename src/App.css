@@ -1,0 +1,22 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.section-wrapper.hidden {
+  display: none;
+}

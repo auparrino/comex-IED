@@ -1,0 +1,42 @@
+.bar-chart-race {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,48,73,0.08);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bar-chart-race__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bar-chart-race__btn {
+  background: rgba(0,48,73,0.04);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.bar-chart-race__btn:hover {
+  background: rgba(0,48,73,0.06);
+  color: var(--text-primary);
+}
+
+.bar-chart-race__container {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+}
+
+.bar-chart-race__container svg {
+  display: block;
+}

@@ -1,0 +1,42 @@
+.sankey-chart {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,48,73,0.08);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.sankey-chart__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.sankey-chart__container {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.sankey-chart__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sankey-chart__tooltip {
+  position: absolute;
+  background: #fff8eb;
+  border: 1px solid rgba(0,48,73,0.12);
+  border-radius: 6px;
+  padding: 6px 10px;
+  pointer-events: none;
+  z-index: 100;
+  font-size: 12px;
+  color: #003049;
+  box-shadow: 0 2px 8px rgba(0,48,73,0.08);
+}

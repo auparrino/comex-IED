@@ -1,0 +1,802 @@
+[
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 4423.0,
+    "flow_usd_millions": 353.9
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 2355.1,
+    "flow_usd_millions": 188.4
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 2217.2,
+    "flow_usd_millions": 177.3
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 2067.9,
+    "flow_usd_millions": 165.4
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1120.1,
+    "flow_usd_millions": 89.6
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1079.9,
+    "flow_usd_millions": 86.4
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 861.6,
+    "flow_usd_millions": 68.9
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 689.3,
+    "flow_usd_millions": 55.1
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 459.5,
+    "flow_usd_millions": 36.7
+  },
+  {
+    "year": 2017,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 344.6,
+    "flow_usd_millions": 27.5
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 4825.1,
+    "flow_usd_millions": 402.1
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 2569.2,
+    "flow_usd_millions": 214.1
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 2418.8,
+    "flow_usd_millions": 201.6
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 2255.9,
+    "flow_usd_millions": 188.0
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1221.9,
+    "flow_usd_millions": 101.8
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1178.1,
+    "flow_usd_millions": 98.2
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 939.9,
+    "flow_usd_millions": 78.3
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 752.0,
+    "flow_usd_millions": 62.7
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 501.3,
+    "flow_usd_millions": 41.8
+  },
+  {
+    "year": 2018,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 376.0,
+    "flow_usd_millions": 31.4
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 5227.2,
+    "flow_usd_millions": 402.1
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 2783.3,
+    "flow_usd_millions": 214.1
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 2620.4,
+    "flow_usd_millions": 201.6
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 2443.9,
+    "flow_usd_millions": 188.0
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1323.8,
+    "flow_usd_millions": 101.9
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1276.2,
+    "flow_usd_millions": 98.1
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1018.3,
+    "flow_usd_millions": 78.4
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 814.6,
+    "flow_usd_millions": 62.6
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 543.1,
+    "flow_usd_millions": 41.8
+  },
+  {
+    "year": 2019,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 407.3,
+    "flow_usd_millions": 31.3
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 6031.3,
+    "flow_usd_millions": 804.1
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 3211.5,
+    "flow_usd_millions": 428.2
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 3023.5,
+    "flow_usd_millions": 403.1
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 2819.8,
+    "flow_usd_millions": 375.9
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1527.4,
+    "flow_usd_millions": 203.6
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1472.6,
+    "flow_usd_millions": 196.4
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1174.9,
+    "flow_usd_millions": 156.6
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 939.9,
+    "flow_usd_millions": 125.3
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 626.6,
+    "flow_usd_millions": 83.5
+  },
+  {
+    "year": 2020,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 470.0,
+    "flow_usd_millions": 62.7
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 6433.4,
+    "flow_usd_millions": 402.1
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 3425.6,
+    "flow_usd_millions": 214.1
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 3225.1,
+    "flow_usd_millions": 201.6
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 3007.8,
+    "flow_usd_millions": 188.0
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1629.2,
+    "flow_usd_millions": 101.8
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1570.8,
+    "flow_usd_millions": 98.2
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1253.3,
+    "flow_usd_millions": 78.4
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 1002.6,
+    "flow_usd_millions": 62.7
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 668.4,
+    "flow_usd_millions": 41.8
+  },
+  {
+    "year": 2021,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 501.3,
+    "flow_usd_millions": 31.3
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 7237.6,
+    "flow_usd_millions": 804.2
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 3853.8,
+    "flow_usd_millions": 428.2
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 3628.2,
+    "flow_usd_millions": 403.1
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 3383.8,
+    "flow_usd_millions": 376.0
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1832.9,
+    "flow_usd_millions": 203.7
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1767.1,
+    "flow_usd_millions": 196.3
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1409.9,
+    "flow_usd_millions": 156.6
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 1127.9,
+    "flow_usd_millions": 125.3
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 752.0,
+    "flow_usd_millions": 83.6
+  },
+  {
+    "year": 2022,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 564.0,
+    "flow_usd_millions": 62.7
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 7700.0,
+    "flow_usd_millions": 462.4
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 4100.0,
+    "flow_usd_millions": 246.2
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 3860.0,
+    "flow_usd_millions": 231.8
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 3600.0,
+    "flow_usd_millions": 216.2
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 1950.0,
+    "flow_usd_millions": 117.1
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1880.0,
+    "flow_usd_millions": 112.9
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1500.0,
+    "flow_usd_millions": 90.1
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 1200.0,
+    "flow_usd_millions": 72.1
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 800.0,
+    "flow_usd_millions": 48.0
+  },
+  {
+    "year": 2023,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 600.0,
+    "flow_usd_millions": 36.0
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "España",
+    "country_iso3": "ESP",
+    "country_lat": 40.5,
+    "country_lng": -3.7,
+    "stock_usd_millions": 7941.3,
+    "flow_usd_millions": 241.3
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "country_lat": -34.6,
+    "country_lng": -58.4,
+    "stock_usd_millions": 4228.5,
+    "flow_usd_millions": 128.5
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Brasil",
+    "country_iso3": "BRA",
+    "country_lat": -14.2,
+    "country_lng": -51.9,
+    "stock_usd_millions": 3980.9,
+    "flow_usd_millions": 120.9
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Países Bajos",
+    "country_iso3": "NLD",
+    "country_lat": 52.1,
+    "country_lng": 5.3,
+    "stock_usd_millions": 3712.8,
+    "flow_usd_millions": 112.8
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "country_lat": -35.7,
+    "country_lng": -71.5,
+    "stock_usd_millions": 2011.1,
+    "flow_usd_millions": 61.1
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "China",
+    "country_iso3": "CHN",
+    "country_lat": 35.9,
+    "country_lng": 104.2,
+    "stock_usd_millions": 1938.9,
+    "flow_usd_millions": 58.9
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Estados Unidos",
+    "country_iso3": "USA",
+    "country_lat": 37.1,
+    "country_lng": -95.7,
+    "stock_usd_millions": 1547.0,
+    "flow_usd_millions": 47.0
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Reino Unido",
+    "country_iso3": "GBR",
+    "country_lat": 55.4,
+    "country_lng": -3.4,
+    "stock_usd_millions": 1237.6,
+    "flow_usd_millions": 37.6
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Francia",
+    "country_iso3": "FRA",
+    "country_lat": 46.2,
+    "country_lng": 2.2,
+    "stock_usd_millions": 825.1,
+    "flow_usd_millions": 25.1
+  },
+  {
+    "year": 2024,
+    "quarter": null,
+    "country": "Suiza",
+    "country_iso3": "CHE",
+    "country_lat": 46.8,
+    "country_lng": 8.2,
+    "stock_usd_millions": 618.8,
+    "flow_usd_millions": 18.8
+  }
+]

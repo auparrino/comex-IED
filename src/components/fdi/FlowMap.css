@@ -1,0 +1,68 @@
+.flow-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.flow-map__gl {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-map__svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.flow-map__svg .flow-arc,
+.flow-map__svg .flow-dot {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: stroke-opacity 0.15s ease, fill-opacity 0.15s ease;
+}
+
+.flow-map__svg .flow-arc:hover {
+  stroke-opacity: 1 !important;
+  stroke-width: 6 !important;
+}
+
+.flow-map__svg .flow-dot:hover {
+  fill-opacity: 1 !important;
+}
+
+.flow-tooltip {
+  position: fixed;
+  z-index: 100;
+  background: #fff8eb;
+  color: #003049;
+  border: 1px solid rgba(0,48,73,0.12);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0,48,73,0.08);
+  white-space: nowrap;
+}
+
+.flow-tooltip__country {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 3px;
+  color: #003049;
+}
+
+.flow-tooltip__row {
+  color: rgba(0,48,73,0.65);
+  font-size: 12px;
+  line-height: 1.5;
+}

@@ -1,0 +1,21 @@
+.global-flow-map {
+  display: flex;
+  height: 100%;
+  gap: 0;
+}
+
+.map-container {
+  flex: 1;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+}
+
+.ranking-panel {
+  width: 300px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--border);
+  padding-left: 0;
+}
