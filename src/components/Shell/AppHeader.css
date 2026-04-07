@@ -6,9 +6,29 @@
   background: var(--bg, #FDF0D5);
   border-bottom: 1px solid var(--border, #d4c4a0);
   flex-shrink: 0;
+  position: relative;
 }
 
 .header-center {
   display: flex;
   align-items: center;
+}
+
+.switch-to-mobile-btn {
+  display: none;
+  position: absolute;
+  right: 16px;
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid var(--border, #d4c4a0);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted, #888);
+}
+
+@media (max-width: 1024px) {
+  .switch-to-mobile-btn {
+    display: block;
+  }
 }

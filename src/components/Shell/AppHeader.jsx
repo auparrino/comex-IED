@@ -1,4 +1,5 @@
 import SectionToggle from './SectionToggle';
+import { forceDesktop } from '../../mobile/hooks/useMobileBreakpoint';
 import './AppHeader.css';
 
 function AppHeader({ activeSection, onSectionChange }) {
@@ -7,6 +8,9 @@ function AppHeader({ activeSection, onSectionChange }) {
       <div className="header-center">
         <SectionToggle activeSection={activeSection} onChange={onSectionChange} />
       </div>
+      <button className="switch-to-mobile-btn" onClick={() => forceDesktop(false)}>
+        Ver versión mobile
+      </button>
     </header>
   );
 }
