@@ -257,6 +257,8 @@ export default function TradeSection() {
               selectedYear={selectedYear}
               selectedYears={selectedYears}
               onClose={() => setSelectedCountry(null)}
+              selectedProduct={selectedProduct}
+              productMapData={productMapData}
             />
           )}
           {selectedBloc && !selectedCountry && (
@@ -266,6 +268,8 @@ export default function TradeSection() {
               selectedYears={selectedYears}
               onClose={() => setSelectedBloc(null)}
               onSelectCountry={handleSelectCountry}
+              selectedProduct={selectedProduct}
+              productMapData={productMapData}
             />
           )}
           {showAnalysis && !selectedCountry && !selectedBloc && (

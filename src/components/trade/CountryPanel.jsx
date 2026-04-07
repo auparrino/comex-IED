@@ -18,7 +18,7 @@ const DIGIT_OPTIONS = [
   { value: 6, label: '6 díg.' },
 ];
 
-export default function CountryPanel({ country, data, selectedYear, selectedYears, onClose }) {
+export default function CountryPanel({ country, data, selectedYear, selectedYears, onClose, selectedProduct, productMapData }) {
   const [activeTab, setActiveTab] = useState('products');
   const [flowFilter, setFlowFilter] = useState('both');
   const [digitLevel, setDigitLevel] = useState(2);
@@ -43,16 +43,18 @@ export default function CountryPanel({ country, data, selectedYear, selectedYear
   );
 
   const totalExp = useMemo(() => {
+    if (selectedProduct && productMapData?.[country]) return productMapData[country].exp || 0;
     return yearlyData
       .filter(y => selectedYears.includes(y.year))
       .reduce((s, y) => s + y.exp, 0);
-  }, [yearlyData, selectedYears]);
+  }, [yearlyData, selectedYears, selectedProduct, productMapData, country]);
 
   const totalImp = useMemo(() => {
+    if (selectedProduct && productMapData?.[country]) return productMapData[country].imp || 0;
     return yearlyData
       .filter(y => selectedYears.includes(y.year))
       .reduce((s, y) => s + y.imp, 0);
-  }, [yearlyData, selectedYears]);
+  }, [yearlyData, selectedYears, selectedProduct, productMapData, country]);
 
   // Products at the selected digit level
   const productData = useMemo(() => {

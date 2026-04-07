@@ -6,7 +6,7 @@ import TradeTimeline from './TradeTimeline';
 import ProductChart from './ProductChart';
 import './CountryPanel.css';
 
-export default function BlocPanel({ blocKey, data, selectedYears, onClose, onSelectCountry }) {
+export default function BlocPanel({ blocKey, data, selectedYears, onClose, onSelectCountry, selectedProduct, productMapData }) {
   const bloc = BLOCS.find(b => b.key === blocKey);
   const [detailData, setDetailData] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
@@ -33,27 +33,40 @@ export default function BlocPanel({ blocKey, data, selectedYears, onClose, onSel
   }, [data.years, data.summary, blocMembers]);
 
   const totals = useMemo(() => {
+    if (selectedProduct && productMapData) {
+      let exp = 0, imp = 0;
+      for (const name of blocMembers) {
+        exp += productMapData[name]?.exp || 0;
+        imp += productMapData[name]?.imp || 0;
+      }
+      return { exp, imp, balance: exp - imp };
+    }
     let exp = 0, imp = 0;
     for (const yr of selectedYears) {
       const yd = yearlyData.find(d => d.year === yr);
       if (yd) { exp += yd.exp; imp += yd.imp; }
     }
     return { exp, imp, balance: exp - imp };
-  }, [yearlyData, selectedYears]);
+  }, [yearlyData, selectedYears, selectedProduct, productMapData, blocMembers]);
 
   const members = useMemo(() => {
     return blocMembers
       .map(name => {
         let exp = 0, imp = 0;
-        for (const yr of selectedYears) {
-          const yd = data.summary[name]?.years?.[yr];
-          if (yd) { exp += yd.exp; imp += yd.imp; }
+        if (selectedProduct && productMapData) {
+          exp = productMapData[name]?.exp || 0;
+          imp = productMapData[name]?.imp || 0;
+        } else {
+          for (const yr of selectedYears) {
+            const yd = data.summary[name]?.years?.[yr];
+            if (yd) { exp += yd.exp; imp += yd.imp; }
+          }
         }
         return { name, exp, imp, total: exp + imp, balance: exp - imp };
       })
       .filter(m => m.total > 0)
       .sort((a, b) => b.total - a.total);
-  }, [data.summary, blocMembers, selectedYears]);
+  }, [data.summary, blocMembers, selectedYears, selectedProduct, productMapData]);
 
   const maxMemberTrade = members[0]?.total || 1;
 
