@@ -92,15 +92,37 @@ export default function CountryPanel({ country, data, selectedYear, selectedYear
   const displayImp = include9999 ? totalImp : totalImp - (ch99Stats?.impVal || 0);
   const balance = displayExp - displayImp;
 
-  // Filtered product data (exclude ch99 when toggled off)
+  // Filtered product data (exclude ch99 + filter by active product/chapter/rubro)
   const filteredProductData = useMemo(() => {
-    if (include9999 || !productData) return productData;
-    const not99 = (p) => !p.chapter.startsWith('99');
-    return {
-      exp: productData.exp.filter(not99),
-      imp: productData.imp.filter(not99),
-    };
-  }, [productData, include9999]);
+    if (!productData) return productData;
+    let result = productData;
+
+    // When a chapter/rubro filter is active, restrict to relevant chapters
+    if (selectedProduct) {
+      let chapterSet = null;
+      if (selectedProduct.startsWith('rubro:')) {
+        const rubroCode = selectedProduct.slice(6);
+        const allRubros = [...(data.rubros?.exp || []), ...(data.rubros?.imp || [])];
+        const rubro = allRubros.find(r => r.code === rubroCode);
+        if (rubro) chapterSet = new Set(rubro.chapters.map(c => String(c).padStart(2, '0')));
+      } else {
+        const ch = selectedProduct.slice(0, 2);
+        chapterSet = new Set([ch]);
+      }
+      if (chapterSet) {
+        result = {
+          exp: result.exp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+          imp: result.imp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+        };
+      }
+    }
+
+    if (!include9999) {
+      const not99 = (p) => !p.chapter.startsWith('99');
+      result = { exp: result.exp.filter(not99), imp: result.imp.filter(not99) };
+    }
+    return result;
+  }, [productData, include9999, selectedProduct, data.rubros]);
 
   // Comtrade validation data for this country
   const validationData = data.comtradeValidation?.[country] || null;
@@ -181,10 +203,12 @@ export default function CountryPanel({ country, data, selectedYear, selectedYear
         </div>
       </div>
 
-      {/* Timeline */}
-      <div className="panel-section">
-        <TradeTimeline data={yearlyData} selectedYear={selectedYear} selectedYears={selectedYears} />
-      </div>
+      {/* Timeline — hidden when product filter active (no year-by-year filtered data) */}
+      {!selectedProduct && (
+        <div className="panel-section">
+          <TradeTimeline data={yearlyData} selectedYear={selectedYear} selectedYears={selectedYears} />
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="panel-tabs">
