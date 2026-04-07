@@ -282,7 +282,7 @@ function RigiTab({ data }) {
             <div key={p.id || (p.name || 'p') + i} className="m-card" style={{ padding: 12 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, marginBottom: 6 }}>
                 <span style={{ flex: 1, fontSize: 14, fontWeight: 600, lineHeight: 1.3, minWidth: 0 }}>
-                  {p.name || p.project || 'Sin nombre'}
+                  {p.project_name || p.name || p.project || 'Sin nombre'}
                 </span>
                 <span style={{
                   fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
