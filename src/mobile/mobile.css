@@ -265,6 +265,7 @@ html[data-section="fdi"] .m-nav__item[aria-current="page"] .m-nav__icon {
   padding: 12px 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
   min-height: 74px;
 }
@@ -274,6 +275,7 @@ html[data-section="fdi"] .m-nav__item[aria-current="page"] .m-nav__icon {
   letter-spacing: 0.05em;
   color: var(--text-muted);
   font-weight: 600;
+  text-align: center;
 }
 .m-kpi__value {
   font-size: var(--m-font-kpi);
