@@ -7,21 +7,22 @@
   display: flex;
   align-items: center;
   padding: 6px 12px;
-  background: rgba(0, 48, 73, 0.05);
-  border: 1px solid rgba(0, 48, 73, 0.15);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   min-height: 34px;
   transition: border-color 0.2s;
+  font-family: inherit;
 }
 
 .ps-trigger:hover {
-  border-color: rgba(0, 48, 73, 0.3);
+  border-color: var(--text-dim);
 }
 
 .ps-placeholder {
-  color: #999;
-  font-size: 13px;
+  color: var(--text-dim);
+  font-size: 0.82rem;
 }
 
 .ps-selected {
@@ -29,15 +30,15 @@
   align-items: center;
   gap: 6px;
   width: 100%;
-  font-size: 13px;
+  font-size: 0.82rem;
 }
 
 .ps-badge {
-  background: #5b7ea1;
-  color: white;
+  background: var(--text-muted);
+  color: var(--bg);
   padding: 1px 5px;
   border-radius: 3px;
-  font-size: 9px;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -45,12 +46,12 @@
 }
 
 .ps-selected .ps-code {
-  background: #003049;
-  color: #FDF0D5;
+  background: var(--text);
+  color: var(--bg);
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 0.75rem;
   flex-shrink: 0;
 }
 
@@ -59,22 +60,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #003049;
+  color: var(--text);
 }
 
 .ps-clear {
   background: none;
   border: none;
   font-size: 18px;
-  color: #999;
+  color: var(--text-dim);
   cursor: pointer;
   padding: 0 4px;
   line-height: 1;
   flex-shrink: 0;
+  font-family: inherit;
 }
 
 .ps-clear:hover {
-  color: #C1121F;
+  color: var(--red);
 }
 
 .ps-dropdown {
@@ -82,10 +84,10 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #fff;
-  border: 1px solid rgba(0, 48, 73, 0.2);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 48, 73, 0.12);
   z-index: 1000;
   margin-top: 4px;
 }
@@ -94,17 +96,24 @@
   width: 100%;
   padding: 8px 12px;
   border: none;
-  border-bottom: 1px solid rgba(0, 48, 73, 0.1);
-  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+  font-family: inherit;
   outline: none;
   border-radius: 8px 8px 0 0;
   box-sizing: border-box;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.ps-search::placeholder {
+  color: var(--text-dim);
 }
 
 /* Tabs */
 .ps-tabs {
   display: flex;
-  border-bottom: 1px solid rgba(0, 48, 73, 0.1);
+  border-bottom: 1px solid var(--border);
 }
 
 .ps-tab {
@@ -112,22 +121,23 @@
   padding: 6px 12px;
   border: none;
   background: transparent;
-  color: #888;
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
   font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
   transition: all 0.15s;
   border-bottom: 2px solid transparent;
 }
 
 .ps-tab:hover {
-  color: #003049;
-  background: rgba(0, 48, 73, 0.03);
+  color: var(--text);
+  background: var(--bg-card-hover);
 }
 
 .ps-tab.active {
-  color: #003049;
-  border-bottom-color: #003049;
+  color: var(--text);
+  border-bottom-color: var(--text);
   font-weight: 600;
 }
 
@@ -135,16 +145,17 @@
 .ps-nav-bar {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 48, 73, 0.1);
-  background: rgba(0, 48, 73, 0.03);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
 }
 
 .ps-back {
   padding: 6px 12px;
   border: none;
   background: transparent;
-  color: #003049;
-  font-size: 12px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-family: inherit;
   text-align: left;
   cursor: pointer;
   flex-shrink: 0;
@@ -152,12 +163,12 @@
 }
 
 .ps-back:hover {
-  background: rgba(0, 48, 73, 0.08);
+  background: var(--bg-card-hover);
 }
 
 .ps-breadcrumb {
-  font-size: 11px;
-  color: #888;
+  font-size: 0.72rem;
+  color: var(--text-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -169,7 +180,7 @@
   overflow-y: auto;
 }
 
-/* Row container: item + optional drill button */
+/* Row container */
 .ps-row {
   display: flex;
   align-items: stretch;
@@ -187,17 +198,18 @@
   width: 32px;
   border: none;
   background: transparent;
-  color: #aaa;
+  color: var(--text-dim);
   font-size: 20px;
   cursor: pointer;
   flex-shrink: 0;
   transition: all 0.15s;
-  border-left: 1px solid rgba(0, 48, 73, 0.06);
+  border-left: 1px solid var(--border);
+  font-family: inherit;
 }
 
 .ps-drill:hover {
-  background: rgba(0, 48, 73, 0.1);
-  color: #003049;
+  background: var(--bg-card-hover);
+  color: var(--text);
 }
 
 /* Item base */
@@ -211,16 +223,18 @@
   background: transparent;
   text-align: left;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 0.78rem;
+  font-family: inherit;
   transition: background 0.15s;
+  color: var(--text);
 }
 
 .ps-item:hover {
-  background: rgba(0, 48, 73, 0.06);
+  background: var(--bg-card-hover);
 }
 
 .ps-item-code {
-  color: #003049;
+  color: var(--text);
   font-weight: 600;
   font-family: monospace;
   flex-shrink: 0;
@@ -232,38 +246,38 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .ps-chapter .ps-item-desc {
-  color: #003049;
+  color: var(--text);
   font-weight: 500;
 }
 
 .ps-heading .ps-item-desc {
-  color: #2a5070;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 /* Rubro styles */
 .ps-rubro .ps-item-code {
-  background: #5b7ea1;
-  color: white;
+  background: var(--text-muted);
+  color: var(--bg);
   padding: 1px 6px;
   border-radius: 3px;
-  font-size: 11px;
+  font-size: 0.7rem;
   font-family: inherit;
   min-width: auto;
 }
 
 .ps-rubro .ps-item-desc {
-  color: #003049;
+  color: var(--text);
   font-weight: 500;
 }
 
 .ps-rubro-count {
-  color: #aaa;
-  font-size: 10px;
+  color: var(--text-dim);
+  font-size: 0.65rem;
   flex-shrink: 0;
   margin-left: 4px;
 }
@@ -271,6 +285,6 @@
 .ps-empty {
   padding: 16px 12px;
   text-align: center;
-  color: #999;
-  font-size: 13px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
