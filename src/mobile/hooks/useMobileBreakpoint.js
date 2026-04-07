@@ -4,10 +4,14 @@ const MOBILE_MAX = 1024;
 const FORCE_KEY = 'comex-force-desktop';
 
 export function shouldRenderMobile() {
+  if (typeof window === 'undefined') return false;
+  // Auto-clear force-desktop flag on clearly phone-sized screens
+  if (window.innerWidth < 768) {
+    try { localStorage.removeItem(FORCE_KEY); } catch {}
+  }
   try {
     if (localStorage.getItem(FORCE_KEY) === '1') return false;
   } catch {}
-  if (typeof window === 'undefined') return false;
   return window.matchMedia(`(max-width: ${MOBILE_MAX}px)`).matches;
 }
 
