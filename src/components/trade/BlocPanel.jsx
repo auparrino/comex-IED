@@ -145,9 +145,11 @@ export default function BlocPanel({ blocKey, data, selectedYears, onClose, onSel
         </div>
       </div>
 
-      <div className="panel-section">
-        <TradeTimeline data={yearlyData} selectedYears={selectedYears} />
-      </div>
+      {!selectedProduct && (
+        <div className="panel-section">
+          <TradeTimeline data={yearlyData} selectedYears={selectedYears} />
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="panel-tabs">

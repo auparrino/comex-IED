@@ -267,6 +267,90 @@ export function getCountryMonthly(monthly, country, year) {
   return monthly[country][year];
 }
 
+export function getSelectedProductChapterSet(selectedProduct, rubros) {
+  if (!selectedProduct) return null;
+
+  if (selectedProduct.startsWith('rubro:')) {
+    const rubroCode = selectedProduct.slice(6);
+    const allRubros = [...(rubros?.exp || []), ...(rubros?.imp || [])];
+    const rubro = allRubros.find(r => r.code === rubroCode);
+    if (!rubro) return null;
+    return new Set(rubro.chapters.map(ch => String(ch).padStart(2, '0')));
+  }
+
+  if (selectedProduct.length >= 2) {
+    return new Set([selectedProduct.slice(0, 2)]);
+  }
+
+  return null;
+}
+
+export function aggregateProductSelectionByCountry(products, rubros, selectedProduct, selectedYears) {
+  if (!products || !selectedProduct || !selectedYears?.length) return null;
+
+  const chapterSet = getSelectedProductChapterSet(selectedProduct, rubros);
+  if (!chapterSet) return null;
+
+  const result = {};
+
+  for (const [country, years] of Object.entries(products)) {
+    let exp = 0;
+    let imp = 0;
+
+    for (const yr of selectedYears) {
+      const yearData = years?.[yr];
+      if (!yearData) continue;
+
+      for (const chapter of chapterSet) {
+        exp += yearData.exp?.[chapter] || 0;
+        imp += yearData.imp?.[chapter] || 0;
+      }
+    }
+
+    if (exp > 0 || imp > 0) {
+      result[country] = { exp, imp };
+    }
+  }
+
+  return Object.keys(result).length ? result : null;
+}
+
+export function getDetailSelectionTotals(detailData, selectedProduct, selectedYears, rubros) {
+  if (!detailData || !selectedProduct || !selectedYears?.length) {
+    return { exp: 0, imp: 0 };
+  }
+
+  const flowTotals = { exp: 0, imp: 0 };
+  const addYearDigits = (yearData, digitsKey, codeMatcher) => {
+    const digitData = yearData?.[digitsKey];
+    if (!digitData) return;
+
+    for (const [code, value] of Object.entries(digitData.exp || {})) {
+      if (codeMatcher(code)) flowTotals.exp += value || 0;
+    }
+    for (const [code, value] of Object.entries(digitData.imp || {})) {
+      if (codeMatcher(code)) flowTotals.imp += value || 0;
+    }
+  };
+
+  if (selectedProduct.startsWith('rubro:')) {
+    const chapterSet = getSelectedProductChapterSet(selectedProduct, rubros);
+    if (!chapterSet) return flowTotals;
+
+    for (const yr of selectedYears) {
+      addYearDigits(detailData[yr], '2', code => chapterSet.has(String(code).padStart(2, '0')));
+    }
+    return flowTotals;
+  }
+
+  const digitsKey = String(selectedProduct.length);
+  for (const yr of selectedYears) {
+    addYearDigits(detailData[yr], digitsKey, code => String(code).startsWith(selectedProduct));
+  }
+
+  return flowTotals;
+}
+
 /**
  * Aggregate chapter-level product data into Grandes Rubros.
  * @param {Array} chapterItems - [{chapter, value, name}]

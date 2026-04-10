@@ -5,6 +5,7 @@ import {
   getDetailProducts,
   calcConcentration,
   aggregateByRubro,
+  getDetailSelectionTotals,
 } from '../../hooks/useTradeData';
 import { fmt, MONTHS } from '../../utils/format';
 import ProductChart from './ProductChart';
@@ -42,19 +43,30 @@ export default function CountryPanel({ country, data, selectedYear, selectedYear
     [data.summary, country, data.years]
   );
 
+  const selectedProductTotals = useMemo(() => {
+    if (!selectedProduct || !detailData) return null;
+    return getDetailSelectionTotals(detailData, selectedProduct, selectedYears, data.rubros);
+  }, [detailData, selectedProduct, selectedYears, data.rubros]);
+
   const totalExp = useMemo(() => {
-    if (selectedProduct && productMapData?.[country]) return productMapData[country].exp || 0;
+    if (selectedProduct) {
+      if (selectedProductTotals) return selectedProductTotals.exp || 0;
+      return productMapData?.[country]?.exp || 0;
+    }
     return yearlyData
       .filter(y => selectedYears.includes(y.year))
       .reduce((s, y) => s + y.exp, 0);
-  }, [yearlyData, selectedYears, selectedProduct, productMapData, country]);
+  }, [yearlyData, selectedYears, selectedProduct, selectedProductTotals, productMapData, country]);
 
   const totalImp = useMemo(() => {
-    if (selectedProduct && productMapData?.[country]) return productMapData[country].imp || 0;
+    if (selectedProduct) {
+      if (selectedProductTotals) return selectedProductTotals.imp || 0;
+      return productMapData?.[country]?.imp || 0;
+    }
     return yearlyData
       .filter(y => selectedYears.includes(y.year))
       .reduce((s, y) => s + y.imp, 0);
-  }, [yearlyData, selectedYears, selectedProduct, productMapData, country]);
+  }, [yearlyData, selectedYears, selectedProduct, selectedProductTotals, productMapData, country]);
 
   // Products at the selected digit level
   const productData = useMemo(() => {

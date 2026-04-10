@@ -1,45 +1,105 @@
 import { useMemo, useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
-import { fmt, fmtFull, fmtPct, MONTHS } from '../../utils/format';
+import { fmt, fmtPct, MONTHS } from '../../utils/format';
 import { COLORS, RUBRO_COLORS } from '../../utils/colors';
-import { aggregateByRubro } from '../../hooks/useTradeData';
+import { aggregateByRubro, getSelectedProductChapterSet } from '../../hooks/useTradeData';
 import './GlobalOverview.css';
 
-export default function GlobalOverview({ data, selectedYear, selectedYears }) {
+export default function GlobalOverview({
+  data,
+  selectedYears,
+  selectedProduct,
+  productMapData,
+}) {
   const timelineRef = useRef();
   const monthlyRef = useRef();
   const [productView, setProductView] = useState('chapters');
 
-  // Check if monthly data is available
+  const supportsYearScopedProductFilter =
+    selectedProduct?.startsWith('rubro:') || selectedProduct?.length === 2;
+
+  const selectedChapterSet = useMemo(() => {
+    if (!selectedProduct || !supportsYearScopedProductFilter) return null;
+    return getSelectedProductChapterSet(selectedProduct, data.rubros);
+  }, [selectedProduct, supportsYearScopedProductFilter, data.rubros]);
+
   const hasMonthlyData = useMemo(() => {
+    if (selectedProduct) return false;
     if (!data.globals?.monthly) return false;
     return selectedYears.some(yr => {
       const m = data.globals.monthly[yr];
       return m && (m.exp.some(v => v > 0) || m.imp.some(v => v > 0));
     });
-  }, [data.globals, selectedYears]);
+  }, [data.globals, selectedProduct, selectedYears]);
 
-  // Global KPIs — use products data when monthly is empty (Comtrade annual)
+  const yearData = useMemo(() => {
+    if (!data.globals) return [];
+
+    if (selectedChapterSet) {
+      return data.years.map(yr => {
+        const p = data.globals.products?.[yr];
+        let exp = 0;
+        let imp = 0;
+
+        for (const chapter of selectedChapterSet) {
+          exp += p?.exp?.[chapter] || 0;
+          imp += p?.imp?.[chapter] || 0;
+        }
+
+        return { year: yr, exp, imp };
+      });
+    }
+
+    return Object.keys(data.globals.products || data.globals.monthly).sort().map(yr => {
+      if (hasMonthlyData) {
+        const m = data.globals.monthly[yr];
+        return {
+          year: yr,
+          exp: m ? m.exp.reduce((s, v) => s + v, 0) : 0,
+          imp: m ? m.imp.reduce((s, v) => s + v, 0) : 0,
+        };
+      }
+
+      const p = data.globals.products[yr];
+      return {
+        year: yr,
+        exp: p ? Object.values(p.exp || {}).reduce((s, v) => s + v, 0) : 0,
+        imp: p ? Object.values(p.imp || {}).reduce((s, v) => s + v, 0) : 0,
+      };
+    });
+  }, [data.globals, data.years, hasMonthlyData, selectedChapterSet]);
+
   const kpis = useMemo(() => {
     if (!data.globals) return null;
-    let totalExp = 0, totalImp = 0;
+
+    if (selectedProduct && productMapData) {
+      const totals = Object.values(productMapData);
+      const totalExp = totals.reduce((sum, item) => sum + (item.exp || 0), 0);
+      const totalImp = totals.reduce((sum, item) => sum + (item.imp || 0), 0);
+      return {
+        totalExp,
+        totalImp,
+        balance: totalExp - totalImp,
+        partners: totals.filter(item => (item.exp || 0) > 0 || (item.imp || 0) > 0).length,
+      };
+    }
+
+    let totalExp = 0;
+    let totalImp = 0;
 
     if (hasMonthlyData) {
       selectedYears.forEach(yr => {
         const m = data.globals.monthly[yr];
-        if (m) {
-          totalExp += m.exp.reduce((s, v) => s + v, 0);
-          totalImp += m.imp.reduce((s, v) => s + v, 0);
-        }
+        if (!m) return;
+        totalExp += m.exp.reduce((s, v) => s + v, 0);
+        totalImp += m.imp.reduce((s, v) => s + v, 0);
       });
     } else {
-      // Fall back to products data for totals
       selectedYears.forEach(yr => {
         const p = data.globals.products[yr];
-        if (p) {
-          totalExp += Object.values(p.exp || {}).reduce((s, v) => s + v, 0);
-          totalImp += Object.values(p.imp || {}).reduce((s, v) => s + v, 0);
-        }
+        if (!p) return;
+        totalExp += Object.values(p.exp || {}).reduce((s, v) => s + v, 0);
+        totalImp += Object.values(p.imp || {}).reduce((s, v) => s + v, 0);
       });
     }
 
@@ -53,11 +113,38 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
     }).length;
 
     return { totalExp, totalImp, balance: totalExp - totalImp, partners };
-  }, [data, selectedYears]);
+  }, [data, selectedProduct, productMapData, selectedYears, hasMonthlyData]);
 
-  // Rubros aggregation
+  const top10Chapters = useMemo(() => {
+    if (!data.globals) return [];
+    if (selectedProduct && !selectedChapterSet) return [];
+
+    const productTotals = {};
+    selectedYears.forEach(yr => {
+      const p = data.globals.products[yr];
+      if (!p) return;
+
+      for (const [ch, val] of Object.entries(p.exp || {})) {
+        if (selectedChapterSet && !selectedChapterSet.has(ch)) continue;
+        if (!productTotals[ch]) productTotals[ch] = { exp: 0, imp: 0, chapter: ch };
+        productTotals[ch].exp += val;
+      }
+      for (const [ch, val] of Object.entries(p.imp || {})) {
+        if (selectedChapterSet && !selectedChapterSet.has(ch)) continue;
+        if (!productTotals[ch]) productTotals[ch] = { exp: 0, imp: 0, chapter: ch };
+        productTotals[ch].imp += val;
+      }
+    });
+
+    return Object.values(productTotals)
+      .map(p => ({ ...p, total: p.exp + p.imp, name: data.chapters[p.chapter] || `Cap ${p.chapter}` }))
+      .sort((a, b) => b.total - a.total)
+      .slice(0, 10);
+  }, [data.globals, data.chapters, selectedYears, selectedChapterSet]);
+
   const rubrosData = useMemo(() => {
     if (!data.globals || !data.rubros || productView !== 'rubros') return null;
+    if (selectedProduct && !selectedChapterSet) return null;
 
     const expByChapter = {};
     const impByChapter = {};
@@ -65,10 +152,13 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
     selectedYears.forEach(yr => {
       const p = data.globals.products[yr];
       if (!p) return;
+
       for (const [ch, val] of Object.entries(p.exp || {})) {
+        if (selectedChapterSet && !selectedChapterSet.has(ch)) continue;
         expByChapter[ch] = (expByChapter[ch] || 0) + val;
       }
       for (const [ch, val] of Object.entries(p.imp || {})) {
+        if (selectedChapterSet && !selectedChapterSet.has(ch)) continue;
         impByChapter[ch] = (impByChapter[ch] || 0) + val;
       }
     });
@@ -84,11 +174,10 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
       exp: aggregateByRubro(expItems, data.rubros.exp),
       imp: aggregateByRubro(impItems, data.rubros.imp),
     };
-  }, [data.globals, data.chapters, data.rubros, selectedYears, productView]);
+  }, [data.globals, data.chapters, data.rubros, selectedYears, productView, selectedChapterSet]);
 
-  // Timeline chart
   useEffect(() => {
-    if (!timelineRef.current || !data.globals) return;
+    if (!timelineRef.current || !yearData.length) return;
 
     const container = timelineRef.current.parentElement;
     const width = container.clientWidth;
@@ -101,30 +190,11 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
     svg.selectAll('*').remove();
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const years = Object.keys(data.globals.products || data.globals.monthly).sort();
-    const yearData = years.map(yr => {
-      if (hasMonthlyData) {
-        const m = data.globals.monthly[yr];
-        return {
-          year: yr,
-          exp: m ? m.exp.reduce((s, v) => s + v, 0) : 0,
-          imp: m ? m.imp.reduce((s, v) => s + v, 0) : 0,
-        };
-      } else {
-        const p = data.globals.products[yr];
-        return {
-          year: yr,
-          exp: p ? Object.values(p.exp || {}).reduce((s, v) => s + v, 0) : 0,
-          imp: p ? Object.values(p.imp || {}).reduce((s, v) => s + v, 0) : 0,
-        };
-      }
-    });
-
+    const years = yearData.map(d => d.year);
     const x = d3.scaleBand().domain(years).range([0, innerW]).padding(0.3);
-    const maxVal = d3.max(yearData, d => Math.max(d.exp, d.imp));
+    const maxVal = d3.max(yearData, d => Math.max(d.exp, d.imp)) || 1;
     const y = d3.scaleLinear().domain([0, maxVal * 1.1]).range([innerH, 0]);
 
-    // Grid
     g.selectAll('.grid')
       .data(y.ticks(5))
       .join('line')
@@ -134,19 +204,18 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
 
     g.append('g')
       .call(d3.axisLeft(y).ticks(5).tickFormat(d => fmt(d)))
-      .call(g => g.select('.domain').remove())
-      .call(g => g.selectAll('.tick line').remove())
-      .call(g => g.selectAll('text').attr('fill', '#4a6a7a').attr('font-size', '11px'));
+      .call(axis => axis.select('.domain').remove())
+      .call(axis => axis.selectAll('.tick line').remove())
+      .call(axis => axis.selectAll('text').attr('fill', '#4a6a7a').attr('font-size', '11px'));
 
     g.append('g')
       .attr('transform', `translate(0,${innerH})`)
       .call(d3.axisBottom(x).tickSize(0))
-      .call(g => g.select('.domain').remove())
-      .call(g => g.selectAll('text').attr('fill', '#003049').attr('font-size', '11px'));
+      .call(axis => axis.select('.domain').remove())
+      .call(axis => axis.selectAll('text').attr('fill', '#003049').attr('font-size', '11px'));
 
     const halfBar = x.bandwidth() / 2;
 
-    // Export bars
     g.selectAll('.bar-exp')
       .data(yearData)
       .join('rect')
@@ -158,7 +227,6 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
       .attr('opacity', d => selectedYears.includes(d.year) ? 0.85 : 0.3)
       .attr('rx', 3);
 
-    // Import bars
     g.selectAll('.bar-imp')
       .data(yearData)
       .join('rect')
@@ -170,41 +238,16 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
       .attr('opacity', d => selectedYears.includes(d.year) ? 0.85 : 0.3)
       .attr('rx', 3);
 
-    // Balance dots
     g.selectAll('.bal-dot')
       .data(yearData)
       .join('circle')
       .attr('cx', d => x(d.year) + x.bandwidth() / 2)
       .attr('cy', d => y((d.exp + d.imp) / 2))
       .attr('r', 0);
+  }, [yearData, selectedYears]);
 
-  }, [data.globals, selectedYears, hasMonthlyData]);
-
-  // Top 10 chapters data (HTML-based, not D3)
-  const top10Chapters = useMemo(() => {
-    if (!data.globals) return [];
-    const productTotals = {};
-    selectedYears.forEach(yr => {
-      const p = data.globals.products[yr];
-      if (!p) return;
-      for (const [ch, val] of Object.entries(p.exp || {})) {
-        if (!productTotals[ch]) productTotals[ch] = { exp: 0, imp: 0, chapter: ch };
-        productTotals[ch].exp += val;
-      }
-      for (const [ch, val] of Object.entries(p.imp || {})) {
-        if (!productTotals[ch]) productTotals[ch] = { exp: 0, imp: 0, chapter: ch };
-        productTotals[ch].imp += val;
-      }
-    });
-    return Object.values(productTotals)
-      .map(p => ({ ...p, total: p.exp + p.imp, name: data.chapters[p.chapter] || `Cap ${p.chapter}` }))
-      .sort((a, b) => b.total - a.total)
-      .slice(0, 10);
-  }, [data.globals, data.chapters, selectedYears]);
-
-  // Global monthly seasonality
   useEffect(() => {
-    if (!monthlyRef.current || !data.globals) return;
+    if (!monthlyRef.current || !data.globals || selectedProduct) return;
 
     const container = monthlyRef.current.parentElement;
     const width = container.clientWidth;
@@ -217,7 +260,6 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
     svg.selectAll('*').remove();
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Aggregate monthly
     let expM = new Array(12).fill(0);
     let impM = new Array(12).fill(0);
     let count = 0;
@@ -236,7 +278,7 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
     }
 
     const x = d3.scaleBand().domain(MONTHS).range([0, innerW]).padding(0.15);
-    const maxVal = Math.max(...expM, ...impM);
+    const maxVal = Math.max(...expM, ...impM, 1);
     const y = d3.scaleLinear().domain([0, maxVal * 1.1]).range([innerH, 0]);
 
     g.selectAll('.grid')
@@ -248,15 +290,15 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
 
     g.append('g')
       .call(d3.axisLeft(y).ticks(4).tickFormat(d => fmt(d)))
-      .call(g => g.select('.domain').remove())
-      .call(g => g.selectAll('.tick line').remove())
-      .call(g => g.selectAll('text').attr('fill', '#4a6a7a').attr('font-size', '10px'));
+      .call(axis => axis.select('.domain').remove())
+      .call(axis => axis.selectAll('.tick line').remove())
+      .call(axis => axis.selectAll('text').attr('fill', '#4a6a7a').attr('font-size', '10px'));
 
     g.append('g')
       .attr('transform', `translate(0,${innerH})`)
       .call(d3.axisBottom(x).tickSize(0))
-      .call(g => g.select('.domain').remove())
-      .call(g => g.selectAll('text').attr('fill', '#003049').attr('font-size', '10px'));
+      .call(axis => axis.select('.domain').remove())
+      .call(axis => axis.selectAll('text').attr('fill', '#003049').attr('font-size', '10px'));
 
     const halfBar = x.bandwidth() / 2;
 
@@ -277,14 +319,12 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
       .attr('width', halfBar)
       .attr('height', d => innerH - y(d))
       .attr('fill', COLORS.imports).attr('opacity', 0.8).attr('rx', 2);
-
-  }, [data.globals, selectedYears]);
+  }, [data.globals, selectedProduct, selectedYears]);
 
   if (!kpis) return null;
 
   return (
     <div className="global-overview">
-      {/* KPIs */}
       <div className="kpi-row">
         <div className="kpi-card">
           <span className="label">Total exportaciones FOB</span>
@@ -307,23 +347,27 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
       </div>
 
       <div className="overview-grid">
-        {/* Timeline */}
-        <div className="overview-card wide">
-          <h3 className="section-title">Evolución anual del comercio</h3>
-          <div className="chart-container">
-            <svg ref={timelineRef} />
+        {(!selectedProduct || selectedChapterSet) && (
+          <div className="overview-card wide">
+            <h3 className="section-title">Evolución anual del comercio</h3>
+            <div className="chart-container">
+              <svg ref={timelineRef} />
+            </div>
+            <div className="legend-row">
+              <span className="legend-item"><span className="dot" style={{ background: COLORS.exports }} />Exportaciones FOB</span>
+              <span className="legend-item"><span className="dot" style={{ background: COLORS.imports }} />Importaciones CIF</span>
+            </div>
           </div>
-          <div className="legend-row">
-            <span className="legend-item"><span className="dot" style={{ background: COLORS.exports }} />Exportaciones FOB</span>
-            <span className="legend-item"><span className="dot" style={{ background: COLORS.imports }} />Importaciones CIF</span>
-          </div>
-        </div>
+        )}
 
-        {/* Products */}
         <div className="overview-card wide">
           <div className="section-title-row">
             <h3 className="section-title">
-              {productView === 'chapters' ? 'Top 10 capitulos del SA' : 'Grandes Rubros'}
+              {productView === 'chapters'
+                ? selectedProduct
+                  ? 'Selección filtrada por capítulo'
+                  : 'Top 10 capitulos del SA'
+                : 'Grandes Rubros'}
             </h3>
             <div className="view-toggle">
               <button
@@ -341,24 +385,32 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
             </div>
           </div>
           {productView === 'chapters' ? (
-            <div className="chapters-chart">
-              {top10Chapters.map(d => {
-                const maxTotal = top10Chapters[0]?.total || 1;
-                return (
-                  <div key={d.chapter} className="chapter-row">
-                    <div className="chapter-header">
-                      <span className="chapter-code">{d.chapter}</span>
-                      <span className="chapter-name">{d.name}</span>
-                      <span className="chapter-total">{fmt(d.total)}</span>
+            selectedProduct && !selectedChapterSet ? (
+              <div className="chapters-chart">
+                <div className="loading-detail">
+                  El desglose filtrado por ano solo esta disponible para capitulos y rubros.
+                </div>
+              </div>
+            ) : (
+              <div className="chapters-chart">
+                {top10Chapters.map(d => {
+                  const maxTotal = top10Chapters[0]?.total || 1;
+                  return (
+                    <div key={d.chapter} className="chapter-row">
+                      <div className="chapter-header">
+                        <span className="chapter-code">{d.chapter}</span>
+                        <span className="chapter-name">{d.name}</span>
+                        <span className="chapter-total">{fmt(d.total)}</span>
+                      </div>
+                      <div className="chapter-bar-container">
+                        <div className="chapter-bar exp" style={{ width: `${(d.exp / maxTotal) * 100}%` }} />
+                        <div className="chapter-bar imp" style={{ width: `${(d.imp / maxTotal) * 100}%` }} />
+                      </div>
                     </div>
-                    <div className="chapter-bar-container">
-                      <div className="chapter-bar exp" style={{ width: `${(d.exp / maxTotal) * 100}%` }} />
-                      <div className="chapter-bar imp" style={{ width: `${(d.imp / maxTotal) * 100}%` }} />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )
           ) : rubrosData ? (
             <div className="rubros-chart">
               <div className="rubros-section">
@@ -419,7 +471,6 @@ export default function GlobalOverview({ data, selectedYear, selectedYears }) {
           ) : null}
         </div>
 
-        {/* Monthly (only if data available) */}
         {hasMonthlyData && (
           <div className="overview-card wide">
             <h3 className="section-title">

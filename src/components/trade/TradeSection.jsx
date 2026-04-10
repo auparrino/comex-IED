@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { useTradeData } from '../../hooks/useTradeData';
+import { useTradeData, aggregateProductSelectionByCountry } from '../../hooks/useTradeData';
 import WorldMap from './WorldMap';
 import CountryPanel from './CountryPanel';
 import GlobalOverview from './GlobalOverview';
@@ -42,6 +42,21 @@ export default function TradeSection() {
   useEffect(() => {
     if (!selectedProduct) {
       setProductMapData(null);
+      return;
+    }
+
+    const canFilterByYearFromProducts =
+      selectedProduct.startsWith('rubro:') || selectedProduct.length === 2;
+
+    if (canFilterByYearFromProducts) {
+      setProductMapData(
+        aggregateProductSelectionByCountry(
+          data.products,
+          data.rubros,
+          selectedProduct,
+          selectedYears
+        )
+      );
       return;
     }
 
@@ -107,7 +122,7 @@ export default function TradeSection() {
         }
       }).catch(() => setProductMapData(null));
     }
-  }, [selectedProduct, data.loadProductMap, data.rubros]);
+  }, [selectedProduct, selectedYears, data.loadProductMap, data.products, data.rubros]);
 
   // Initialize year range once data loads
   const from = yearFrom || data.years[0];
@@ -172,7 +187,12 @@ export default function TradeSection() {
         />
         {(() => {
           let exp = 0, imp = 0, partners = 0;
-          if (data.summary) {
+          if (selectedProduct && productMapData) {
+            const totals = Object.values(productMapData);
+            exp = totals.reduce((sum, item) => sum + (item.exp || 0), 0);
+            imp = totals.reduce((sum, item) => sum + (item.imp || 0), 0);
+            partners = totals.filter(item => (item.exp || 0) > 0 || (item.imp || 0) > 0).length;
+          } else if (data.summary) {
             for (const [, info] of Object.entries(data.summary)) {
               let cExp = 0, cImp = 0;
               for (const yr of selectedYears) {
@@ -279,7 +299,13 @@ export default function TradeSection() {
                 <button className="close-btn" onClick={() => setShowAnalysis(false)} aria-label="Cerrar resumen">&times;</button>
               </div>
               <div className="analysis-panel-content">
-                <GlobalOverview data={data} selectedYear={selectedYear} selectedYears={selectedYears} />
+                <GlobalOverview
+                  data={data}
+                  selectedYear={selectedYear}
+                  selectedYears={selectedYears}
+                  selectedProduct={selectedProduct}
+                  productMapData={productMapData}
+                />
               </div>
             </div>
           )}
