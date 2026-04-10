@@ -38,6 +38,21 @@ export default function TradeSection() {
     setYearTo(null);
   }, [data.activeReporter]);
 
+  // Initialize year range once data loads
+  const from = yearFrom || data.years[0];
+  const to = yearTo || data.years[data.years.length - 1];
+
+  const selectedYear = useMemo(() => {
+    if (!data.years.length) return 'all';
+    if (from === data.years[0] && to === data.years[data.years.length - 1]) return 'all';
+    if (from === to) return from;
+    return from;
+  }, [from, to, data.years]);
+
+  const selectedYears = useMemo(() => {
+    return data.years.filter(y => y >= from && y <= to);
+  }, [data.years, from, to]);
+
   // Load product map when product selected (supports 2/4/6-digit and rubros)
   useEffect(() => {
     if (!selectedProduct) {
@@ -123,21 +138,6 @@ export default function TradeSection() {
       }).catch(() => setProductMapData(null));
     }
   }, [selectedProduct, selectedYears, data.loadProductMap, data.products, data.rubros]);
-
-  // Initialize year range once data loads
-  const from = yearFrom || data.years[0];
-  const to = yearTo || data.years[data.years.length - 1];
-
-  const selectedYear = useMemo(() => {
-    if (!data.years.length) return 'all';
-    if (from === data.years[0] && to === data.years[data.years.length - 1]) return 'all';
-    if (from === to) return from;
-    return from;
-  }, [from, to, data.years]);
-
-  const selectedYears = useMemo(() => {
-    return data.years.filter(y => y >= from && y <= to);
-  }, [data.years, from, to]);
 
   const handleYearChange = useCallback((newFrom, newTo) => {
     setYearFrom(newFrom);
