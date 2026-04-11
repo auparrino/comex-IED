@@ -10,8 +10,8 @@ const EMPTY_SET = new Set();
 const VIEW_MODES = [
   { key: 'balance', label: 'Balance' },
   { key: 'total', label: 'Total' },
-  { key: 'exports', label: 'Expo' },
-  { key: 'imports', label: 'Impo' },
+  { key: 'exports', label: 'Exports' },
+  { key: 'imports', label: 'Imports' },
 ];
 const GLOBAL_FLOW_LIMIT = 5;
 const SMALL_COUNTRY_AREA = 18;
@@ -53,13 +53,13 @@ function getMetricValue(totals, viewMode) {
 function getMetricLabel(viewMode) {
   switch (viewMode) {
     case 'exports':
-      return 'Exportaciones FOB';
+      return 'Exports FOB';
     case 'imports':
-      return 'Importaciones CIF';
+      return 'Imports CIF';
     case 'balance':
-      return 'Balance comercial';
+      return 'Trade balance';
     default:
-      return 'Comercio total';
+      return 'Total trade';
   }
 }
 
@@ -81,8 +81,8 @@ function getLegendLabels(viewMode, maxValue) {
   if (viewMode === 'balance') {
     return {
       min: `Deficit ${fmt(maxValue)}`,
-      mid: 'Equilibrio',
-      max: `Superavit ${fmt(maxValue)}`,
+      mid: 'Break-even',
+      max: `Surplus ${fmt(maxValue)}`,
     };
   }
 
@@ -94,7 +94,7 @@ function getLegendLabels(viewMode, maxValue) {
 }
 
 function getYearFilterLabel(selectedYears) {
-  if (!selectedYears?.length) return 'Sin datos';
+  if (!selectedYears?.length) return 'No data';
   if (selectedYears.length === 1) return String(selectedYears[0]);
   return `${selectedYears[0]}-${selectedYears[selectedYears.length - 1]}`;
 }
@@ -106,15 +106,15 @@ function getProductFilterLabel(selectedProduct, data) {
     const rubroCode = selectedProduct.slice(6);
     const rubro = [...(data.rubros?.exp || []), ...(data.rubros?.imp || [])]
       .find(item => item.code === rubroCode);
-    return rubro ? `Rubro ${rubro.code} - ${rubro.name}` : `Rubro ${rubroCode}`;
+    return rubro ? `Category ${rubro.code} - ${rubro.name}` : `Category ${rubroCode}`;
   }
 
   if (selectedProduct.length === 2) {
-    return `Cap ${selectedProduct} - ${data.chapters?.[selectedProduct] || selectedProduct}`;
+    return `Chapter ${selectedProduct} - ${data.chapters?.[selectedProduct] || selectedProduct}`;
   }
 
   if (selectedProduct.length === 4) {
-    return `Part ${selectedProduct} - ${data.ncmDescriptions?.[selectedProduct] || selectedProduct}`;
+    return `Heading ${selectedProduct} - ${data.ncmDescriptions?.[selectedProduct] || selectedProduct}`;
   }
 
   return `HS6 ${selectedProduct} - ${data.ncmDescriptions?.[selectedProduct] || selectedProduct}`;
@@ -242,9 +242,9 @@ export default function WorldMap({
   );
 
   const filterChips = useMemo(() => {
-    const chips = [{ label: 'Anios', value: getYearFilterLabel(selectedYears) }];
-    if (selectedProductLabel) chips.push({ label: 'Producto', value: selectedProductLabel });
-    if (selectedCountry) chips.push({ label: 'Pais', value: selectedCountry });
+    const chips = [{ label: 'Years', value: getYearFilterLabel(selectedYears) }];
+    if (selectedProductLabel) chips.push({ label: 'Product', value: selectedProductLabel });
+    if (selectedCountry) chips.push({ label: 'Country', value: selectedCountry });
     return chips;
   }, [selectedYears, selectedProductLabel, selectedCountry]);
 
@@ -263,6 +263,21 @@ export default function WorldMap({
     [viewMode, metricMax]
   );
 
+  const tradeMagnitudeMax = useMemo(
+    () => Math.max(1, ...Object.values(effectiveTotals).map(item => item.total || 0)),
+    [effectiveTotals]
+  );
+
+  const exportMagnitudeMax = useMemo(
+    () => Math.max(1, ...Object.values(effectiveTotals).map(item => item.exp || 0)),
+    [effectiveTotals]
+  );
+
+  const importMagnitudeMax = useMemo(
+    () => Math.max(1, ...Object.values(effectiveTotals).map(item => item.imp || 0)),
+    [effectiveTotals]
+  );
+
   const rankedCountries = useMemo(() => {
     return Object.entries(effectiveTotals).sort((a, b) => b[1].total - a[1].total);
   }, [effectiveTotals]);
@@ -271,12 +286,12 @@ export default function WorldMap({
     if (!showFlows) return [];
     if (selectedCountry && effectiveTotals[selectedCountry]) return [selectedCountry];
 
-    const threshold = metricMax * 0.08;
+    const threshold = tradeMagnitudeMax * 0.08;
     return rankedCountries
       .filter(([, totals]) => totals.total >= threshold)
       .slice(0, GLOBAL_FLOW_LIMIT)
       .map(([name]) => name);
-  }, [showFlows, selectedCountry, effectiveTotals, rankedCountries, metricMax]);
+  }, [showFlows, selectedCountry, effectiveTotals, rankedCountries, tradeMagnitudeMax]);
 
   const selectedCountryTotals = selectedCountry ? effectiveTotals[selectedCountry] : null;
   const hubCoords = reporterCoords || [-34.6, -58.4];
@@ -427,8 +442,8 @@ export default function WorldMap({
         tooltip.innerHTML = `
           <strong>${escapeHtml(name)}</strong>
           ${productLabel}
-          <div class="tt-row"><span class="tt-exp">Exp FOB</span> ${fmt(totals.exp)}</div>
-          <div class="tt-row"><span class="tt-imp">Imp CIF</span> ${fmt(totals.imp)}</div>
+          <div class="tt-row"><span class="tt-exp">Exports FOB</span> ${fmt(totals.exp)}</div>
+          <div class="tt-row"><span class="tt-imp">Imports CIF</span> ${fmt(totals.imp)}</div>
           <div class="tt-row"><span class="tt-bal">Balance</span> ${fmt(totals.balance)}</div>
           <div class="tt-row"><span class="tt-metric">${escapeHtml(getMetricLabel(viewMode))}</span> ${fmt(Math.abs(getMetricValue(totals, viewMode)))}</div>
         `;
@@ -483,6 +498,15 @@ export default function WorldMap({
     if (showFlows) {
       const hubProj = projection([hubCoords[1], hubCoords[0]]);
       const arcsGroup = zoomG.append('g').attr('class', 'arcs');
+      const exportFlowScale = d3.scaleSqrt()
+        .domain([0, exportMagnitudeMax])
+        .range(selectedCountry ? [1.2, 7.2] : [0.5, 4.6]);
+      const importFlowScale = d3.scaleSqrt()
+        .domain([0, importMagnitudeMax])
+        .range(selectedCountry ? [1.2, 7.2] : [0.5, 4.6]);
+      const nodeScale = d3.scaleSqrt()
+        .domain([0, tradeMagnitudeMax])
+        .range(selectedCountry ? [3.6, 7] : [2.2, 4.6]);
 
       for (const name of flowCountries) {
         const coords = getCountryCoords(name);
@@ -502,17 +526,14 @@ export default function WorldMap({
         const midY = (hubProj[1] + targetProj[1]) / 2;
         const perpX = (-dy / dist) * curvature;
         const perpY = (dx / dist) * curvature;
-        const arcWidth = selectedCountry
-          ? d3.scaleSqrt().domain([0, Math.max(totals.exp, totals.imp, 1)]).range([1.2, 5.5])
-          : d3.scaleSqrt().domain([0, Math.max(metricMax, 1)]).range([0.6, 2.8]);
 
         if (totals.exp > 0) {
           arcsGroup.append('path')
             .attr('d', `M ${hubProj[0]},${hubProj[1]} Q ${midX + perpX},${midY + perpY} ${targetProj[0]},${targetProj[1]}`)
             .attr('fill', 'none')
             .attr('stroke', COLORS.exports)
-            .attr('stroke-width', selectedCountry ? arcWidth(totals.exp) : arcWidth(totals.total))
-            .attr('stroke-opacity', selectedCountry ? 0.78 : 0.22)
+            .attr('stroke-width', exportFlowScale(totals.exp))
+            .attr('stroke-opacity', selectedCountry ? 0.82 : 0.28)
             .attr('stroke-linecap', 'round');
         }
 
@@ -521,15 +542,15 @@ export default function WorldMap({
             .attr('d', `M ${targetProj[0]},${targetProj[1]} Q ${midX - perpX},${midY - perpY} ${hubProj[0]},${hubProj[1]}`)
             .attr('fill', 'none')
             .attr('stroke', COLORS.imports)
-            .attr('stroke-width', selectedCountry ? arcWidth(totals.imp) : arcWidth(totals.total))
-            .attr('stroke-opacity', selectedCountry ? 0.72 : 0.18)
+            .attr('stroke-width', importFlowScale(totals.imp))
+            .attr('stroke-opacity', selectedCountry ? 0.76 : 0.24)
             .attr('stroke-linecap', 'round');
         }
 
         arcsGroup.append('circle')
           .attr('cx', targetProj[0])
           .attr('cy', targetProj[1])
-          .attr('r', selectedCountry ? 4.5 : 2.5)
+          .attr('r', nodeScale(totals.total))
           .attr('fill', totals.balance >= 0 ? COLORS.exports : COLORS.imports)
           .attr('stroke', '#fff8eb')
           .attr('stroke-width', 1);
@@ -612,9 +633,12 @@ export default function WorldMap({
     countryTotals,
     containerWidth,
     flowCountries,
+    exportMagnitudeMax,
+    importMagnitudeMax,
     metricMax,
     showFlows,
     selectedCountryTotals,
+    tradeMagnitudeMax,
     viewMode,
   ]);
 
@@ -622,7 +646,7 @@ export default function WorldMap({
     <div className="world-map-container">
       <div className="map-overlay map-overlay-top">
         <div className="map-panel map-mode-panel">
-          <span className="map-panel-title">Color por</span>
+          <span className="map-panel-title">Color by</span>
           <div className="map-segmented">
             {VIEW_MODES.map(mode => (
               <button
@@ -643,7 +667,7 @@ export default function WorldMap({
             className={`map-action-btn ${showFlows ? 'active' : ''}`}
             onClick={() => setShowFlows(prev => !prev)}
           >
-            {showFlows ? 'Ocultar flujos' : 'Mostrar flujos'}
+            {showFlows ? 'Hide flows' : 'Show flows'}
           </button>
           <button
             type="button"
@@ -659,7 +683,7 @@ export default function WorldMap({
 
       <div className="map-overlay map-overlay-bottom">
         <div className="map-panel map-filters-panel">
-          <span className="map-panel-title">Filtros activos</span>
+          <span className="map-panel-title">Active filters</span>
           <div className="map-filter-chips">
             {filterChips.map(chip => (
               <span key={`${chip.label}:${chip.value}`} className="map-chip" title={`${chip.label}: ${chip.value}`}>
@@ -676,9 +700,9 @@ export default function WorldMap({
             <span className="map-legend-note">
               {showFlows
                 ? selectedCountry
-                  ? 'Flujos del pais seleccionado'
-                  : `Flujos top ${Math.min(flowCountries.length, GLOBAL_FLOW_LIMIT)}`
-                : 'Flujos ocultos'}
+                  ? 'Selected-country flows'
+                  : `Top ${Math.min(flowCountries.length, GLOBAL_FLOW_LIMIT)} flows`
+                : 'Flows hidden'}
             </span>
           </div>
           <div
