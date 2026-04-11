@@ -15,6 +15,8 @@ const VIEW_MODES = [
 ];
 const GLOBAL_FLOW_LIMIT = 5;
 const SMALL_COUNTRY_AREA = 18;
+const NO_TRADE_FILL = '#f8ecd2';
+const NO_TRADE_STROKE = '#e4d4b2';
 
 // Module-level cache for world topology (survives remounts)
 let worldDataCache = null;
@@ -370,7 +372,7 @@ export default function WorldMap({
 
     const valueScale = d3.scaleSqrt().domain([0, metricMax]).range([0, 1]);
     const getCountryFill = (totals) => {
-      if (!totals) return '#FDF0D5';
+      if (!totals) return NO_TRADE_FILL;
 
       if (viewMode === 'balance') {
         const intensity = valueScale(Math.abs(totals.balance || 0));
@@ -400,13 +402,13 @@ export default function WorldMap({
         const name = numIdToName[parseInt(d.id, 10)];
         if (name && effectiveTotals[name]) return getCountryFill(effectiveTotals[name]);
         if (selectedProduct && name && countryTotals[name]) return '#e8dcc0';
-        return '#FDF0D5';
+        return NO_TRADE_FILL;
       })
       .attr('stroke', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
         if (name && name === selectedCountry) return COLORS.highlight;
         if (name && blocHighlight.size > 0 && blocHighlight.has(name)) return COLORS.highlight;
-        return '#f3e6cb';
+        return NO_TRADE_STROKE;
       })
       .attr('stroke-width', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
@@ -418,8 +420,8 @@ export default function WorldMap({
         const name = numIdToName[parseInt(d.id, 10)];
         if (!selectedCountry) return 1;
         if (name === selectedCountry) return 1;
-        if (name && effectiveTotals[name]) return 0.34;
-        return 0.18;
+        if (name && effectiveTotals[name]) return 0.42;
+        return 0.78;
       })
       .style('cursor', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
