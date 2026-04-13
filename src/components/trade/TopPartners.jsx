@@ -49,18 +49,21 @@ export default function TopPartners({
   selectedBloc,
   comtradeValidation,
   viewMode,
+  onViewModeChange,
 }) {
   const [search, setSearch] = useState('');
-  const [concept, setConcept] = useState('total');
   const [activeBlocs, setActiveBlocs] = useState(new Set());
   const [expandedBloc, setExpandedBloc] = useState(null);
 
-  // Sync concept with map's viewMode
-  useEffect(() => {
-    if (viewMode === 'exports') setConcept('exp');
-    else if (viewMode === 'imports') setConcept('imp');
-    else setConcept('total');
-  }, [viewMode]);
+  // Derive concept directly from viewMode (no local state needed)
+  const concept = viewMode === 'exports' ? 'exp' : viewMode === 'imports' ? 'imp' : 'total';
+
+  const setConcept = (key) => {
+    if (!onViewModeChange) return;
+    if (key === 'exp') onViewModeChange('exports');
+    else if (key === 'imp') onViewModeChange('imports');
+    else onViewModeChange('balance');
+  };
 
   // Notify parent of highlighted countries whenever active blocs change
   useEffect(() => {

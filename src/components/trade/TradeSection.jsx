@@ -272,6 +272,7 @@ export default function TradeSection() {
               selectedBloc={selectedBloc}
               comtradeValidation={data.comtradeValidation}
               viewMode={viewMode}
+              onViewModeChange={setViewMode}
             />
           </div>
           {selectedCountry && (
