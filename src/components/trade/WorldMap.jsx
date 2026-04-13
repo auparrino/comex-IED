@@ -180,6 +180,8 @@ export default function WorldMap({
   selectedProduct,
   productMapData,
   blocHighlight,
+  viewMode: viewModeProp,
+  onViewModeChange,
 }) {
   void selectedYear;
   blocHighlight = blocHighlight || EMPTY_SET;
@@ -190,7 +192,8 @@ export default function WorldMap({
   const zoomBehaviorRef = useRef(null);
   const [worldData, setWorldData] = useState(worldDataCache);
   const [containerWidth, setContainerWidth] = useState(0);
-  const [viewMode, setViewMode] = useState('balance');
+  const viewMode = viewModeProp ?? 'balance';
+  const setViewMode = onViewModeChange ?? (() => {});
   const [showFlows, setShowFlows] = useState(true);
 
   const countryTotals = useMemo(

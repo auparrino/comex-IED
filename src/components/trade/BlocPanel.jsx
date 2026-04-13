@@ -103,18 +103,59 @@ export default function BlocPanel({ blocKey, data, selectedYears, onClose, onSel
   const productData = useMemo(() => {
     if (!detailData) return { exp: [], imp: [] };
     const yearArg = selectedYears.length === 1 ? selectedYears[0] : 'all';
-    return getDetailProducts(detailData, data.ncmDescriptions, yearArg, 2, selectedYears);
-  }, [detailData, data.ncmDescriptions, selectedYears]);
+    let result = getDetailProducts(detailData, data.ncmDescriptions, yearArg, 2, selectedYears);
+
+    // Filter by selected product/chapter/rubro
+    if (selectedProduct) {
+      let chapterSet = null;
+      if (selectedProduct.startsWith('rubro:')) {
+        const rubroCode = selectedProduct.slice(6);
+        const allRubros = [...(data.rubros?.exp || []), ...(data.rubros?.imp || [])];
+        const rubro = allRubros.find(r => r.code === rubroCode);
+        if (rubro) chapterSet = new Set(rubro.chapters.map(c => String(c).padStart(2, '0')));
+      } else {
+        chapterSet = new Set([selectedProduct.slice(0, 2)]);
+      }
+      if (chapterSet) {
+        result = {
+          exp: result.exp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+          imp: result.imp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+        };
+      }
+    }
+
+    return result;
+  }, [detailData, data.ncmDescriptions, selectedYears, selectedProduct, data.rubros]);
 
   const rubrosData = useMemo(() => {
     if (!data.rubros || productView !== 'rubros' || !detailData) return null;
     const yearArg = selectedYears.length === 1 ? selectedYears[0] : 'all';
-    const chapterData = getDetailProducts(detailData, data.ncmDescriptions, yearArg, 2, selectedYears);
+    let chapterData = getDetailProducts(detailData, data.ncmDescriptions, yearArg, 2, selectedYears);
+
+    // Apply same chapter/rubro filter
+    if (selectedProduct) {
+      let chapterSet = null;
+      if (selectedProduct.startsWith('rubro:')) {
+        const rubroCode = selectedProduct.slice(6);
+        const allRubros = [...(data.rubros?.exp || []), ...(data.rubros?.imp || [])];
+        const rubro = allRubros.find(r => r.code === rubroCode);
+        if (rubro) chapterSet = new Set(rubro.chapters.map(c => String(c).padStart(2, '0')));
+      } else {
+        chapterSet = new Set([selectedProduct.slice(0, 2)]);
+      }
+      if (chapterSet) {
+        chapterData = {
+          exp: chapterData.exp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+          imp: chapterData.imp.filter(p => chapterSet.has(String(p.chapter).slice(0, 2).padStart(2, '0'))),
+        };
+      }
+    }
+
     return {
       exp: aggregateByRubro(chapterData.exp, data.rubros.exp),
       imp: aggregateByRubro(chapterData.imp, data.rubros.imp),
     };
-  }, [detailData, data.ncmDescriptions, data.rubros, selectedYears, productView]);
+  }, [detailData, data.ncmDescriptions, data.rubros, selectedYears, productView, selectedProduct]);
 
   if (!bloc) return null;
 

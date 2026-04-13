@@ -113,7 +113,7 @@
 }
 
 .map-actions-panel {
-  display: flex;
+  display: none;
   gap: 8px;
   align-items: center;
 }
@@ -280,6 +280,7 @@
   }
 
   .map-actions-panel {
+    display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
   }

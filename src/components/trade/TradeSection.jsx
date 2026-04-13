@@ -21,6 +21,7 @@ export default function TradeSection() {
   const [productMapData, setProductMapData] = useState(null);
   const [blocHighlight, setBlocHighlight] = useState(new Set());
   const [selectedBloc, setSelectedBloc] = useState(null);
+  const [viewMode, setViewMode] = useState('balance');
 
   // Get active reporter config
   const activeReporterConfig = useMemo(() => {
@@ -255,6 +256,8 @@ export default function TradeSection() {
               selectedProduct={selectedProduct}
               productMapData={productMapData}
               blocHighlight={blocHighlight}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
             />
             <TopPartners
               countries={data.countries}
@@ -268,6 +271,7 @@ export default function TradeSection() {
               onSelectBloc={handleSelectBloc}
               selectedBloc={selectedBloc}
               comtradeValidation={data.comtradeValidation}
+              viewMode={viewMode}
             />
           </div>
           {selectedCountry && (
