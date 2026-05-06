@@ -32,6 +32,10 @@ export const BLOCS = [
       'Egipto', 'Etiopía', 'Irán', 'Emiratos Árabes', 'Arabia Saudita',
     ],
   },
+  {
+    key: 'efta', label: 'EFTA',
+    members: ['Suiza', 'Noruega', 'Islandia', 'Liechtenstein'],
+  },
 ];
 
 const CONCEPTS = [
