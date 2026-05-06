@@ -1,0 +1,1058 @@
+[
+  {
+    "year": 2003,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 1652.0,
+    "fdi_inflow_pct_gdp": 1.2,
+    "fdi_inward_stock_usd_millions": 48338.0
+  },
+  {
+    "year": 2004,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 4125.0,
+    "fdi_inflow_pct_gdp": 2.5,
+    "fdi_inward_stock_usd_millions": 52471.0
+  },
+  {
+    "year": 2005,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 5265.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 55423.0
+  },
+  {
+    "year": 2006,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 5537.0,
+    "fdi_inflow_pct_gdp": 2.5,
+    "fdi_inward_stock_usd_millions": 60441.0
+  },
+  {
+    "year": 2007,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 6473.0,
+    "fdi_inflow_pct_gdp": 2.4,
+    "fdi_inward_stock_usd_millions": 66015.0
+  },
+  {
+    "year": 2008,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 9726.0,
+    "fdi_inflow_pct_gdp": 2.9,
+    "fdi_inward_stock_usd_millions": 72189.0
+  },
+  {
+    "year": 2009,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 4017.0,
+    "fdi_inflow_pct_gdp": 1.3,
+    "fdi_inward_stock_usd_millions": 74461.0
+  },
+  {
+    "year": 2010,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 7848.0,
+    "fdi_inflow_pct_gdp": 1.9,
+    "fdi_inward_stock_usd_millions": 82686.0
+  },
+  {
+    "year": 2011,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 10840.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 93126.0
+  },
+  {
+    "year": 2012,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 15324.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 106096.0
+  },
+  {
+    "year": 2013,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 9822.0,
+    "fdi_inflow_pct_gdp": 1.8,
+    "fdi_inward_stock_usd_millions": 108793.0
+  },
+  {
+    "year": 2014,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 5065.0,
+    "fdi_inflow_pct_gdp": 0.9,
+    "fdi_inward_stock_usd_millions": 95444.0
+  },
+  {
+    "year": 2015,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 11759.0,
+    "fdi_inflow_pct_gdp": 1.9,
+    "fdi_inward_stock_usd_millions": 93386.0
+  },
+  {
+    "year": 2016,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 3260.0,
+    "fdi_inflow_pct_gdp": 0.6,
+    "fdi_inward_stock_usd_millions": 80277.0
+  },
+  {
+    "year": 2017,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 11517.0,
+    "fdi_inflow_pct_gdp": 1.8,
+    "fdi_inward_stock_usd_millions": 78636.0
+  },
+  {
+    "year": 2018,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 11873.0,
+    "fdi_inflow_pct_gdp": 2.3,
+    "fdi_inward_stock_usd_millions": 73537.0
+  },
+  {
+    "year": 2019,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 6663.0,
+    "fdi_inflow_pct_gdp": 1.5,
+    "fdi_inward_stock_usd_millions": 72568.0
+  },
+  {
+    "year": 2020,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 4719.0,
+    "fdi_inflow_pct_gdp": 1.2,
+    "fdi_inward_stock_usd_millions": 77282.0
+  },
+  {
+    "year": 2021,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 6836.0,
+    "fdi_inflow_pct_gdp": 1.4,
+    "fdi_inward_stock_usd_millions": 83476.0
+  },
+  {
+    "year": 2022,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 15654.0,
+    "fdi_inflow_pct_gdp": 2.6,
+    "fdi_inward_stock_usd_millions": 100576.0
+  },
+  {
+    "year": 2023,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 2901.0,
+    "fdi_inflow_pct_gdp": 0.5,
+    "fdi_inward_stock_usd_millions": 101211.0
+  },
+  {
+    "year": 2024,
+    "country": "Argentina",
+    "country_iso3": "ARG",
+    "fdi_inflow_usd_millions": 10521.0,
+    "fdi_inflow_pct_gdp": 1.6,
+    "fdi_inward_stock_usd_millions": 110038.0
+  },
+  {
+    "year": 2003,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 10144.0,
+    "fdi_inflow_pct_gdp": 1.8,
+    "fdi_inward_stock_usd_millions": 132818.0
+  },
+  {
+    "year": 2004,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 18166.0,
+    "fdi_inflow_pct_gdp": 2.7,
+    "fdi_inward_stock_usd_millions": 161259.0
+  },
+  {
+    "year": 2005,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 15066.0,
+    "fdi_inflow_pct_gdp": 1.7,
+    "fdi_inward_stock_usd_millions": 181344.0
+  },
+  {
+    "year": 2006,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 19378.0,
+    "fdi_inflow_pct_gdp": 1.8,
+    "fdi_inward_stock_usd_millions": 220621.0
+  },
+  {
+    "year": 2007,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 44579.0,
+    "fdi_inflow_pct_gdp": 3.2,
+    "fdi_inward_stock_usd_millions": 309668.0
+  },
+  {
+    "year": 2008,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 50716.0,
+    "fdi_inflow_pct_gdp": 3.0,
+    "fdi_inward_stock_usd_millions": 287697.0
+  },
+  {
+    "year": 2009,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 31481.0,
+    "fdi_inflow_pct_gdp": 1.9,
+    "fdi_inward_stock_usd_millions": 400808.0
+  },
+  {
+    "year": 2010,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 53345.0,
+    "fdi_inflow_pct_gdp": 2.4,
+    "fdi_inward_stock_usd_millions": 682346.0
+  },
+  {
+    "year": 2011,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 71539.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 669670.0
+  },
+  {
+    "year": 2012,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 76098.0,
+    "fdi_inflow_pct_gdp": 3.1,
+    "fdi_inward_stock_usd_millions": 702560.0
+  },
+  {
+    "year": 2013,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 69181.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 724590.0
+  },
+  {
+    "year": 2014,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 73086.0,
+    "fdi_inflow_pct_gdp": 3.0,
+    "fdi_inward_stock_usd_millions": 658576.0
+  },
+  {
+    "year": 2015,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 64267.0,
+    "fdi_inflow_pct_gdp": 3.6,
+    "fdi_inward_stock_usd_millions": 540569.0
+  },
+  {
+    "year": 2016,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 53768.0,
+    "fdi_inflow_pct_gdp": 3.0,
+    "fdi_inward_stock_usd_millions": 571604.0
+  },
+  {
+    "year": 2017,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 68895.0,
+    "fdi_inflow_pct_gdp": 3.3,
+    "fdi_inward_stock_usd_millions": 587018.0
+  },
+  {
+    "year": 2018,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 78163.0,
+    "fdi_inflow_pct_gdp": 4.1,
+    "fdi_inward_stock_usd_millions": 533900.0
+  },
+  {
+    "year": 2019,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 69174.0,
+    "fdi_inflow_pct_gdp": 3.8,
+    "fdi_inward_stock_usd_millions": 553500.0
+  },
+  {
+    "year": 2020,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 37786.0,
+    "fdi_inflow_pct_gdp": 2.6,
+    "fdi_inward_stock_usd_millions": 579510.0
+  },
+  {
+    "year": 2021,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 46441.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 620000.0
+  },
+  {
+    "year": 2022,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 91503.0,
+    "fdi_inflow_pct_gdp": 4.7,
+    "fdi_inward_stock_usd_millions": 690000.0
+  },
+  {
+    "year": 2023,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 63810.0,
+    "fdi_inflow_pct_gdp": 2.9,
+    "fdi_inward_stock_usd_millions": 728000.0
+  },
+  {
+    "year": 2024,
+    "country": "Brazil",
+    "country_iso3": "BRA",
+    "fdi_inflow_usd_millions": 66009.0,
+    "fdi_inflow_pct_gdp": 3.2,
+    "fdi_inward_stock_usd_millions": 770000.0
+  },
+  {
+    "year": 2003,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 4307.0,
+    "fdi_inflow_pct_gdp": 5.7,
+    "fdi_inward_stock_usd_millions": 53479.0
+  },
+  {
+    "year": 2004,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 7173.0,
+    "fdi_inflow_pct_gdp": 6.7,
+    "fdi_inward_stock_usd_millions": 60337.0
+  },
+  {
+    "year": 2005,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 6984.0,
+    "fdi_inflow_pct_gdp": 5.7,
+    "fdi_inward_stock_usd_millions": 73124.0
+  },
+  {
+    "year": 2006,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 7298.0,
+    "fdi_inflow_pct_gdp": 4.9,
+    "fdi_inward_stock_usd_millions": 80334.0
+  },
+  {
+    "year": 2007,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 12534.0,
+    "fdi_inflow_pct_gdp": 7.2,
+    "fdi_inward_stock_usd_millions": 99428.0
+  },
+  {
+    "year": 2008,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 15181.0,
+    "fdi_inflow_pct_gdp": 8.5,
+    "fdi_inward_stock_usd_millions": 97794.0
+  },
+  {
+    "year": 2009,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 12887.0,
+    "fdi_inflow_pct_gdp": 7.8,
+    "fdi_inward_stock_usd_millions": 116703.0
+  },
+  {
+    "year": 2010,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 15095.0,
+    "fdi_inflow_pct_gdp": 7.0,
+    "fdi_inward_stock_usd_millions": 148454.0
+  },
+  {
+    "year": 2011,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 23444.0,
+    "fdi_inflow_pct_gdp": 9.0,
+    "fdi_inward_stock_usd_millions": 158977.0
+  },
+  {
+    "year": 2012,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 28457.0,
+    "fdi_inflow_pct_gdp": 10.5,
+    "fdi_inward_stock_usd_millions": 192840.0
+  },
+  {
+    "year": 2013,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 20825.0,
+    "fdi_inflow_pct_gdp": 7.5,
+    "fdi_inward_stock_usd_millions": 207677.0
+  },
+  {
+    "year": 2014,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 22002.0,
+    "fdi_inflow_pct_gdp": 8.5,
+    "fdi_inward_stock_usd_millions": 216313.0
+  },
+  {
+    "year": 2015,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 20469.0,
+    "fdi_inflow_pct_gdp": 8.4,
+    "fdi_inward_stock_usd_millions": 220857.0
+  },
+  {
+    "year": 2016,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 12225.0,
+    "fdi_inflow_pct_gdp": 4.9,
+    "fdi_inward_stock_usd_millions": 229557.0
+  },
+  {
+    "year": 2017,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 6129.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 240700.0
+  },
+  {
+    "year": 2018,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 7735.0,
+    "fdi_inflow_pct_gdp": 2.7,
+    "fdi_inward_stock_usd_millions": 247860.0
+  },
+  {
+    "year": 2019,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 12478.0,
+    "fdi_inflow_pct_gdp": 4.7,
+    "fdi_inward_stock_usd_millions": 252340.0
+  },
+  {
+    "year": 2020,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 8385.0,
+    "fdi_inflow_pct_gdp": 3.3,
+    "fdi_inward_stock_usd_millions": 252040.0
+  },
+  {
+    "year": 2021,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 15251.0,
+    "fdi_inflow_pct_gdp": 4.8,
+    "fdi_inward_stock_usd_millions": 259950.0
+  },
+  {
+    "year": 2022,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 17156.0,
+    "fdi_inflow_pct_gdp": 5.5,
+    "fdi_inward_stock_usd_millions": 273560.0
+  },
+  {
+    "year": 2023,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 14346.0,
+    "fdi_inflow_pct_gdp": 4.1,
+    "fdi_inward_stock_usd_millions": 280100.0
+  },
+  {
+    "year": 2024,
+    "country": "Chile",
+    "country_iso3": "CHL",
+    "fdi_inflow_usd_millions": 11283.0,
+    "fdi_inflow_pct_gdp": 3.4,
+    "fdi_inward_stock_usd_millions": 287000.0
+  },
+  {
+    "year": 2003,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 1720.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 17848.0
+  },
+  {
+    "year": 2004,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 3116.0,
+    "fdi_inflow_pct_gdp": 2.7,
+    "fdi_inward_stock_usd_millions": 21780.0
+  },
+  {
+    "year": 2005,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 10252.0,
+    "fdi_inflow_pct_gdp": 6.9,
+    "fdi_inward_stock_usd_millions": 35355.0
+  },
+  {
+    "year": 2006,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 6656.0,
+    "fdi_inflow_pct_gdp": 4.1,
+    "fdi_inward_stock_usd_millions": 42336.0
+  },
+  {
+    "year": 2007,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 9049.0,
+    "fdi_inflow_pct_gdp": 4.3,
+    "fdi_inward_stock_usd_millions": 56189.0
+  },
+  {
+    "year": 2008,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 10596.0,
+    "fdi_inflow_pct_gdp": 4.4,
+    "fdi_inward_stock_usd_millions": 66200.0
+  },
+  {
+    "year": 2009,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 8035.0,
+    "fdi_inflow_pct_gdp": 3.5,
+    "fdi_inward_stock_usd_millions": 75090.0
+  },
+  {
+    "year": 2010,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 6430.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 82215.0
+  },
+  {
+    "year": 2011,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 14648.0,
+    "fdi_inflow_pct_gdp": 4.4,
+    "fdi_inward_stock_usd_millions": 95606.0
+  },
+  {
+    "year": 2012,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 15039.0,
+    "fdi_inflow_pct_gdp": 4.1,
+    "fdi_inward_stock_usd_millions": 111962.0
+  },
+  {
+    "year": 2013,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 16209.0,
+    "fdi_inflow_pct_gdp": 4.3,
+    "fdi_inward_stock_usd_millions": 127440.0
+  },
+  {
+    "year": 2014,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 16325.0,
+    "fdi_inflow_pct_gdp": 4.3,
+    "fdi_inward_stock_usd_millions": 140753.0
+  },
+  {
+    "year": 2015,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 11723.0,
+    "fdi_inflow_pct_gdp": 4.0,
+    "fdi_inward_stock_usd_millions": 145289.0
+  },
+  {
+    "year": 2016,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 13848.0,
+    "fdi_inflow_pct_gdp": 4.9,
+    "fdi_inward_stock_usd_millions": 157413.0
+  },
+  {
+    "year": 2017,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 13836.0,
+    "fdi_inflow_pct_gdp": 4.4,
+    "fdi_inward_stock_usd_millions": 175900.0
+  },
+  {
+    "year": 2018,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 11535.0,
+    "fdi_inflow_pct_gdp": 3.5,
+    "fdi_inward_stock_usd_millions": 186100.0
+  },
+  {
+    "year": 2019,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 14314.0,
+    "fdi_inflow_pct_gdp": 4.5,
+    "fdi_inward_stock_usd_millions": 197700.0
+  },
+  {
+    "year": 2020,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 7459.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 200500.0
+  },
+  {
+    "year": 2021,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 9561.0,
+    "fdi_inflow_pct_gdp": 3.0,
+    "fdi_inward_stock_usd_millions": 207600.0
+  },
+  {
+    "year": 2022,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 17339.0,
+    "fdi_inflow_pct_gdp": 4.9,
+    "fdi_inward_stock_usd_millions": 221000.0
+  },
+  {
+    "year": 2023,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 16993.0,
+    "fdi_inflow_pct_gdp": 4.7,
+    "fdi_inward_stock_usd_millions": 233600.0
+  },
+  {
+    "year": 2024,
+    "country": "Colombia",
+    "country_iso3": "COL",
+    "fdi_inflow_usd_millions": 12648.0,
+    "fdi_inflow_pct_gdp": 3.3,
+    "fdi_inward_stock_usd_millions": 243000.0
+  },
+  {
+    "year": 2003,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 18225.0,
+    "fdi_inflow_pct_gdp": 2.7,
+    "fdi_inward_stock_usd_millions": 177416.0
+  },
+  {
+    "year": 2004,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 24818.0,
+    "fdi_inflow_pct_gdp": 3.3,
+    "fdi_inward_stock_usd_millions": 204918.0
+  },
+  {
+    "year": 2005,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 24407.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 226079.0
+  },
+  {
+    "year": 2006,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 20120.0,
+    "fdi_inflow_pct_gdp": 2.1,
+    "fdi_inward_stock_usd_millions": 246267.0
+  },
+  {
+    "year": 2007,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 32458.0,
+    "fdi_inflow_pct_gdp": 3.1,
+    "fdi_inward_stock_usd_millions": 277627.0
+  },
+  {
+    "year": 2008,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 28574.0,
+    "fdi_inflow_pct_gdp": 2.6,
+    "fdi_inward_stock_usd_millions": 295577.0
+  },
+  {
+    "year": 2009,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 17331.0,
+    "fdi_inflow_pct_gdp": 2.0,
+    "fdi_inward_stock_usd_millions": 308477.0
+  },
+  {
+    "year": 2010,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 27319.0,
+    "fdi_inflow_pct_gdp": 2.5,
+    "fdi_inward_stock_usd_millions": 350000.0
+  },
+  {
+    "year": 2011,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 24560.0,
+    "fdi_inflow_pct_gdp": 2.1,
+    "fdi_inward_stock_usd_millions": 370060.0
+  },
+  {
+    "year": 2012,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 18996.0,
+    "fdi_inflow_pct_gdp": 1.6,
+    "fdi_inward_stock_usd_millions": 382975.0
+  },
+  {
+    "year": 2013,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 48492.0,
+    "fdi_inflow_pct_gdp": 3.8,
+    "fdi_inward_stock_usd_millions": 418640.0
+  },
+  {
+    "year": 2014,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 29346.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 443000.0
+  },
+  {
+    "year": 2015,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 35419.0,
+    "fdi_inflow_pct_gdp": 3.1,
+    "fdi_inward_stock_usd_millions": 473200.0
+  },
+  {
+    "year": 2016,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 32113.0,
+    "fdi_inflow_pct_gdp": 3.0,
+    "fdi_inward_stock_usd_millions": 501000.0
+  },
+  {
+    "year": 2017,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 32906.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 516000.0
+  },
+  {
+    "year": 2018,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 34047.0,
+    "fdi_inflow_pct_gdp": 2.8,
+    "fdi_inward_stock_usd_millions": 495500.0
+  },
+  {
+    "year": 2019,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 32921.0,
+    "fdi_inflow_pct_gdp": 2.6,
+    "fdi_inward_stock_usd_millions": 504200.0
+  },
+  {
+    "year": 2020,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 29068.0,
+    "fdi_inflow_pct_gdp": 2.7,
+    "fdi_inward_stock_usd_millions": 530000.0
+  },
+  {
+    "year": 2021,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 31528.0,
+    "fdi_inflow_pct_gdp": 2.4,
+    "fdi_inward_stock_usd_millions": 555000.0
+  },
+  {
+    "year": 2022,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 35292.0,
+    "fdi_inflow_pct_gdp": 2.5,
+    "fdi_inward_stock_usd_millions": 586000.0
+  },
+  {
+    "year": 2023,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 36058.0,
+    "fdi_inflow_pct_gdp": 2.4,
+    "fdi_inward_stock_usd_millions": 615000.0
+  },
+  {
+    "year": 2024,
+    "country": "Mexico",
+    "country_iso3": "MEX",
+    "fdi_inflow_usd_millions": 31088.0,
+    "fdi_inflow_pct_gdp": 1.9,
+    "fdi_inward_stock_usd_millions": 636000.0
+  },
+  {
+    "year": 2003,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 1335.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 12400.0
+  },
+  {
+    "year": 2004,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 1599.0,
+    "fdi_inflow_pct_gdp": 2.3,
+    "fdi_inward_stock_usd_millions": 14233.0
+  },
+  {
+    "year": 2005,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 2579.0,
+    "fdi_inflow_pct_gdp": 3.3,
+    "fdi_inward_stock_usd_millions": 16025.0
+  },
+  {
+    "year": 2006,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 3467.0,
+    "fdi_inflow_pct_gdp": 3.7,
+    "fdi_inward_stock_usd_millions": 19380.0
+  },
+  {
+    "year": 2007,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 5491.0,
+    "fdi_inflow_pct_gdp": 5.1,
+    "fdi_inward_stock_usd_millions": 24755.0
+  },
+  {
+    "year": 2008,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6924.0,
+    "fdi_inflow_pct_gdp": 5.4,
+    "fdi_inward_stock_usd_millions": 30200.0
+  },
+  {
+    "year": 2009,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6431.0,
+    "fdi_inflow_pct_gdp": 5.1,
+    "fdi_inward_stock_usd_millions": 36810.0
+  },
+  {
+    "year": 2010,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 8455.0,
+    "fdi_inflow_pct_gdp": 5.4,
+    "fdi_inward_stock_usd_millions": 42976.0
+  },
+  {
+    "year": 2011,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 7659.0,
+    "fdi_inflow_pct_gdp": 4.4,
+    "fdi_inward_stock_usd_millions": 51208.0
+  },
+  {
+    "year": 2012,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 11788.0,
+    "fdi_inflow_pct_gdp": 5.9,
+    "fdi_inward_stock_usd_millions": 62369.0
+  },
+  {
+    "year": 2013,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 9800.0,
+    "fdi_inflow_pct_gdp": 4.8,
+    "fdi_inward_stock_usd_millions": 74236.0
+  },
+  {
+    "year": 2014,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 4441.0,
+    "fdi_inflow_pct_gdp": 2.2,
+    "fdi_inward_stock_usd_millions": 78000.0
+  },
+  {
+    "year": 2015,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 8272.0,
+    "fdi_inflow_pct_gdp": 4.3,
+    "fdi_inward_stock_usd_millions": 86500.0
+  },
+  {
+    "year": 2016,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6863.0,
+    "fdi_inflow_pct_gdp": 3.6,
+    "fdi_inward_stock_usd_millions": 93000.0
+  },
+  {
+    "year": 2017,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6769.0,
+    "fdi_inflow_pct_gdp": 3.2,
+    "fdi_inward_stock_usd_millions": 99000.0
+  },
+  {
+    "year": 2018,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6488.0,
+    "fdi_inflow_pct_gdp": 2.9,
+    "fdi_inward_stock_usd_millions": 104000.0
+  },
+  {
+    "year": 2019,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 8892.0,
+    "fdi_inflow_pct_gdp": 3.9,
+    "fdi_inward_stock_usd_millions": 110000.0
+  },
+  {
+    "year": 2020,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 982.0,
+    "fdi_inflow_pct_gdp": 0.5,
+    "fdi_inward_stock_usd_millions": 107000.0
+  },
+  {
+    "year": 2021,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 5691.0,
+    "fdi_inflow_pct_gdp": 2.6,
+    "fdi_inward_stock_usd_millions": 111000.0
+  },
+  {
+    "year": 2022,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 10848.0,
+    "fdi_inflow_pct_gdp": 4.3,
+    "fdi_inward_stock_usd_millions": 119000.0
+  },
+  {
+    "year": 2023,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 6285.0,
+    "fdi_inflow_pct_gdp": 2.3,
+    "fdi_inward_stock_usd_millions": 123000.0
+  },
+  {
+    "year": 2024,
+    "country": "Peru",
+    "country_iso3": "PER",
+    "fdi_inflow_usd_millions": 5891.0,
+    "fdi_inflow_pct_gdp": 2.0,
+    "fdi_inward_stock_usd_millions": 127000.0
+  }
+]

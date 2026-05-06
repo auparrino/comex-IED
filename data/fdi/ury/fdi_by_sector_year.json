@@ -1,0 +1,450 @@
+[
+  {
+    "year": 2017,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 5500.0,
+    "flow_usd_millions": 440.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2017,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 3960.0,
+    "flow_usd_millions": 316.8,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2017,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 3300.0,
+    "flow_usd_millions": 264.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2017,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 2640.0,
+    "flow_usd_millions": 211.2,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2017,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 2200.0,
+    "flow_usd_millions": 176.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2017,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 1760.0,
+    "flow_usd_millions": 140.8,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2017,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 2640.0,
+    "flow_usd_millions": 211.2,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2018,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 6000.0,
+    "flow_usd_millions": 500.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2018,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 4320.0,
+    "flow_usd_millions": 360.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2018,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 3600.0,
+    "flow_usd_millions": 300.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2018,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 2880.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2018,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 2400.0,
+    "flow_usd_millions": 200.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2018,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 1920.0,
+    "flow_usd_millions": 160.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2018,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 2880.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2019,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 6500.0,
+    "flow_usd_millions": 500.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2019,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 4680.0,
+    "flow_usd_millions": 360.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2019,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 3900.0,
+    "flow_usd_millions": 300.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2019,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 3120.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2019,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 2600.0,
+    "flow_usd_millions": 200.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2019,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 2080.0,
+    "flow_usd_millions": 160.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2019,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 3120.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2020,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 7500.0,
+    "flow_usd_millions": 1000.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2020,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 5400.0,
+    "flow_usd_millions": 720.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2020,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 4500.0,
+    "flow_usd_millions": 600.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2020,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 3600.0,
+    "flow_usd_millions": 480.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2020,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 3000.0,
+    "flow_usd_millions": 400.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2020,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 2400.0,
+    "flow_usd_millions": 320.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2020,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 3600.0,
+    "flow_usd_millions": 480.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2021,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 8000.0,
+    "flow_usd_millions": 500.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2021,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 5760.0,
+    "flow_usd_millions": 360.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2021,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 4800.0,
+    "flow_usd_millions": 300.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2021,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 3840.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2021,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 3200.0,
+    "flow_usd_millions": 200.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2021,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 2560.0,
+    "flow_usd_millions": 160.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2021,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 3840.0,
+    "flow_usd_millions": 240.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2022,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 9000.0,
+    "flow_usd_millions": 1000.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2022,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 6480.0,
+    "flow_usd_millions": 720.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2022,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 5400.0,
+    "flow_usd_millions": 600.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2022,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 4320.0,
+    "flow_usd_millions": 480.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2022,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 3600.0,
+    "flow_usd_millions": 400.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2022,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 2880.0,
+    "flow_usd_millions": 320.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2022,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 4320.0,
+    "flow_usd_millions": 480.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2023,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 9575.0,
+    "flow_usd_millions": 575.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2023,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 6894.0,
+    "flow_usd_millions": 414.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2023,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 5745.0,
+    "flow_usd_millions": 345.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2023,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 4596.0,
+    "flow_usd_millions": 276.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2023,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 3830.0,
+    "flow_usd_millions": 230.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2023,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 3064.0,
+    "flow_usd_millions": 184.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2023,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 4596.0,
+    "flow_usd_millions": 276.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2024,
+    "sector": "Servicios financieros",
+    "sector_en": "Financial Services",
+    "stock_usd_millions": 9875.0,
+    "flow_usd_millions": 300.0,
+    "share_pct": 25.0
+  },
+  {
+    "year": 2024,
+    "sector": "Comercio",
+    "sector_en": "Commerce",
+    "stock_usd_millions": 7110.0,
+    "flow_usd_millions": 216.0,
+    "share_pct": 18.0
+  },
+  {
+    "year": 2024,
+    "sector": "Industria manufacturera",
+    "sector_en": "Manufacturing",
+    "stock_usd_millions": 5925.0,
+    "flow_usd_millions": 180.0,
+    "share_pct": 15.0
+  },
+  {
+    "year": 2024,
+    "sector": "Actividades inmobiliarias",
+    "sector_en": "Real Estate",
+    "stock_usd_millions": 4740.0,
+    "flow_usd_millions": 144.0,
+    "share_pct": 12.0
+  },
+  {
+    "year": 2024,
+    "sector": "Agricultura",
+    "sector_en": "Agriculture",
+    "stock_usd_millions": 3950.0,
+    "flow_usd_millions": 120.0,
+    "share_pct": 10.0
+  },
+  {
+    "year": 2024,
+    "sector": "Comunicaciones",
+    "sector_en": "Communications",
+    "stock_usd_millions": 3160.0,
+    "flow_usd_millions": 96.0,
+    "share_pct": 8.0
+  },
+  {
+    "year": 2024,
+    "sector": "Otros",
+    "sector_en": "Other",
+    "stock_usd_millions": 4740.0,
+    "flow_usd_millions": 144.0,
+    "share_pct": 12.0
+  }
+]

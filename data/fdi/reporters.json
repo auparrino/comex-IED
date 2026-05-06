@@ -1,0 +1,5 @@
+[
+  {"key": "arg", "name": "Argentina", "iso2": "AR", "iso3": "ARG"},
+  {"key": "ury", "name": "Uruguay", "iso2": "UY", "iso3": "URY"},
+  {"key": "pry", "name": "Paraguay", "iso2": "PY", "iso3": "PRY"}
+]
