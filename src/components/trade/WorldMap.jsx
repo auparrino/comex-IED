@@ -360,9 +360,14 @@ export default function WorldMap({
     svg.attr('viewBox', `0 0 ${width} ${height}`);
     svg.selectAll('*').remove();
 
+    // Fit the entire world into the viewport at scale 1 so the user always
+    // starts seeing the full planisphere; let zoom/pan handle the rest.
+    // Natural Earth at scale 152 spans ~ 962w × 484h px, so divide accordingly
+    // and pick the smaller to ensure both dimensions fit.
+    const fitScale = Math.min(width / 6.4, height / 3.3);
     const projection = d3.geoNaturalEarth1()
       .center([-20, -5])
-      .scale(width / 5.5)
+      .scale(fitScale)
       .translate([width / 2, height / 2]);
 
     const path = d3.geoPath(projection);
@@ -373,7 +378,6 @@ export default function WorldMap({
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .translateExtent([[0, 0], [width, height]])
-      .extent([[0, 0], [width, height]])
       .on('zoom', (event) => {
         zoomG.attr('transform', event.transform);
         zoomTransformRef.current = event.transform;
