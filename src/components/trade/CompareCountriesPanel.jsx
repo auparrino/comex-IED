@@ -93,35 +93,89 @@ function ProductMini({ items, total, flow }) {
   );
 }
 
-function deltaPercent(a, b, labelA, labelB) {
-  // Used for flows that are always non-negative (Exp / Imp).
-  // Shows how much A differs vs B as a directional arrow + percentage.
-  if (a === b && a === 0) return { text: '—', cls: 'neutral', title: 'Sin datos' };
-  if (b === 0) return { text: `↑ ∞`, cls: 'neutral', title: `${labelB} no tiene operaciones registradas` };
-  if (a === 0) return { text: `↓ 100%`, cls: 'neutral', title: `${labelA} no tiene operaciones registradas` };
-  const diff = a - b;
-  const pct = (diff / Math.abs(b)) * 100;
-  const arrow = diff >= 0 ? '↑' : '↓';
-  const verb = diff >= 0 ? 'mayor' : 'menor';
+function compareRatio(a, b, labelA, labelB) {
+  // For non-negative flows (Exp / Imp). Picks the most readable form:
+  //  - "5.2× mayor" / "5.2× menor" when ratio is large
+  //  - "+18% mayor" / "−18% menor" when values are close
+  if (a === 0 && b === 0) return { text: '— sin datos', cls: 'neutral', title: 'Ambos en cero' };
+  if (b === 0) return { text: `solo ${labelA}`, cls: 'neutral', title: `${labelB} no tiene operaciones` };
+  if (a === 0) return { text: `solo ${labelB}`, cls: 'neutral', title: `${labelA} no tiene operaciones` };
+
+  const ratio = a / b;
+  if (ratio >= 0.97 && ratio <= 1.03) {
+    return { text: '≈ similar', cls: 'neutral', title: `${labelA} y ${labelB} tienen valores similares` };
+  }
+  if (ratio >= 1) {
+    if (ratio >= 2) {
+      const m = ratio.toFixed(1);
+      return {
+        text: `${m}× mayor`,
+        cls: 'pos',
+        title: `${labelA} es ${m} veces ${labelB}`,
+      };
+    }
+    const pct = ((ratio - 1) * 100).toFixed(0);
+    return {
+      text: `+${pct}% mayor`,
+      cls: 'pos',
+      title: `${labelA} es ${pct}% mayor que ${labelB}`,
+    };
+  }
+  if (ratio <= 0.5) {
+    const m = (1 / ratio).toFixed(1);
+    return {
+      text: `${m}× menor`,
+      cls: 'neg',
+      title: `${labelB} es ${m} veces ${labelA}`,
+    };
+  }
+  const pct = ((1 - ratio) * 100).toFixed(0);
   return {
-    text: `${arrow} ${Math.abs(pct).toFixed(0)}%`,
-    cls: 'neutral',
-    title: `${labelA} es ${Math.abs(pct).toFixed(0)}% ${verb} que ${labelB}`,
+    text: `−${pct}% menor`,
+    cls: 'neg',
+    title: `${labelA} es ${pct}% menor que ${labelB}`,
   };
 }
 
-function deltaAbsolute(a, b, labelA, labelB) {
-  // Used for Balance, where signs can flip and a % ratio is misleading.
-  const diff = a - b;
-  if (diff === 0) return { text: '—', cls: 'neutral', title: 'Iguales' };
-  const sign = diff >= 0 ? '+' : '−';
-  const cls = diff >= 0 ? 'pos' : 'neg';
-  const verb = diff >= 0 ? 'mayor' : 'menor';
+function compareBalance(a, b, labelA, labelB) {
+  // Balances can have opposite signs, so a numeric delta is not meaningful.
+  // Surface the *qualitative* status (surplus/deficit) of each side instead.
+  const aSign = a > 0 ? 'pos' : a < 0 ? 'neg' : 'zero';
+  const bSign = b > 0 ? 'pos' : b < 0 ? 'neg' : 'zero';
+  if (aSign === bSign) {
+    if (aSign === 'pos') {
+      return { text: 'Ambos superávit', cls: 'pos', title: `${labelA} y ${labelB} tienen superávit` };
+    }
+    if (aSign === 'neg') {
+      return { text: 'Ambos déficit', cls: 'neg', title: `${labelA} y ${labelB} tienen déficit` };
+    }
+    return { text: 'Sin balance', cls: 'neutral', title: 'Balance cero en ambos' };
+  }
+  // Opposite signs
+  const aLabel = aSign === 'pos' ? 'superávit' : aSign === 'neg' ? 'déficit' : 'sin balance';
+  const bLabel = bSign === 'pos' ? 'superávit' : bSign === 'neg' ? 'déficit' : 'sin balance';
   return {
-    text: `${sign}${fmt(Math.abs(diff))}`,
-    cls,
-    title: `Balance de ${labelA} es ${sign}${fmt(Math.abs(diff))} ${verb} que el de ${labelB}`,
+    text: `${aLabel} vs ${bLabel}`,
+    cls: 'neutral',
+    title: `${labelA}: ${aLabel} · ${labelB}: ${bLabel}`,
   };
+}
+
+function ProportionBar({ a, b }) {
+  const max = Math.max(Math.abs(a), Math.abs(b));
+  if (max === 0) return null;
+  const widthA = (Math.abs(a) / max) * 100;
+  const widthB = (Math.abs(b) / max) * 100;
+  return (
+    <div className="compare-prop-bars" aria-hidden="true">
+      <div className="compare-prop-track">
+        <div className="compare-prop-fill side-a" style={{ width: `${widthA}%` }} />
+      </div>
+      <div className="compare-prop-track">
+        <div className="compare-prop-fill side-b" style={{ width: `${widthB}%` }} />
+      </div>
+    </div>
+  );
 }
 
 export default function CompareCountriesPanel({
@@ -149,9 +203,9 @@ export default function CompareCountriesPanel({
     });
   }, [a.yearlyData, b.yearlyData, data.years]);
 
-  const dExp = deltaPercent(a.totals.exp, b.totals.exp, countryA, countryB);
-  const dImp = deltaPercent(a.totals.imp, b.totals.imp, countryA, countryB);
-  const dBal = deltaAbsolute(a.totals.balance, b.totals.balance, countryA, countryB);
+  const dExp = compareRatio(a.totals.exp, b.totals.exp, countryA, countryB);
+  const dImp = compareRatio(a.totals.imp, b.totals.imp, countryA, countryB);
+  const dBal = compareBalance(a.totals.balance, b.totals.balance, countryA, countryB);
 
   return (
     <div className="country-panel compare-panel">
@@ -162,7 +216,7 @@ export default function CompareCountriesPanel({
         </div>
         <p className="compare-help">
           Tocá un país para cerrar esa columna y dejar solo el otro.
-          {' '}Las flechas (↑/↓) muestran cuánto difiere <strong>{countryA}</strong> respecto a <strong>{countryB}</strong>.
+          {' '}El centro indica cuánto <strong>{countryA}</strong> es mayor o menor que <strong>{countryB}</strong>.
         </p>
         <div className="compare-headers">
           <button
@@ -191,7 +245,8 @@ export default function CompareCountriesPanel({
             <span className="compare-kpi-value exports">{fmt(a.totals.exp)}</span>
           </div>
           <div className="compare-kpi-label" title={dExp.title}>
-            <span>Exp FOB</span>
+            <span className="compare-kpi-name">Exp FOB</span>
+            <ProportionBar a={a.totals.exp} b={b.totals.exp} />
             <span className={`compare-delta ${dExp.cls}`}>{dExp.text}</span>
           </div>
           <div className="compare-kpi-cell side-b">
@@ -203,7 +258,8 @@ export default function CompareCountriesPanel({
             <span className="compare-kpi-value imports">{fmt(a.totals.imp)}</span>
           </div>
           <div className="compare-kpi-label" title={dImp.title}>
-            <span>Imp CIF</span>
+            <span className="compare-kpi-name">Imp CIF</span>
+            <ProportionBar a={a.totals.imp} b={b.totals.imp} />
             <span className={`compare-delta ${dImp.cls}`}>{dImp.text}</span>
           </div>
           <div className="compare-kpi-cell side-b">
@@ -217,7 +273,7 @@ export default function CompareCountriesPanel({
             </span>
           </div>
           <div className="compare-kpi-label" title={dBal.title}>
-            <span>Δ Balance</span>
+            <span className="compare-kpi-name">Balance</span>
             <span className={`compare-delta ${dBal.cls}`}>{dBal.text}</span>
           </div>
           <div className="compare-kpi-cell side-b">

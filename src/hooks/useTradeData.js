@@ -116,7 +116,31 @@ export function useTradeData() {
     Object.values(summary).forEach(c => {
       Object.keys(c.years).forEach(y => allYears.add(y));
     });
-    return [...allYears].sort();
+    const sorted = [...allYears].sort();
+    // Drop the trailing year(s) when their global trade volume is far below the
+    // prior year — that signals a partial year (only a few months loaded), which
+    // would otherwise produce misleading drops in time-series charts.
+    if (sorted.length < 2) return sorted;
+    const totalsByYear = {};
+    for (const yr of sorted) totalsByYear[yr] = 0;
+    for (const c of Object.values(summary)) {
+      for (const yr of sorted) {
+        const yd = c.years?.[yr];
+        if (yd) totalsByYear[yr] += (yd.exp || 0) + (yd.imp || 0);
+      }
+    }
+    while (sorted.length >= 2) {
+      const last = sorted[sorted.length - 1];
+      const prev = sorted[sorted.length - 2];
+      const lastTotal = totalsByYear[last] || 0;
+      const prevTotal = totalsByYear[prev] || 0;
+      if (prevTotal > 0 && lastTotal / prevTotal < 0.7) {
+        sorted.pop();
+      } else {
+        break;
+      }
+    }
+    return sorted;
   }, [summary]);
 
   const countries = useMemo(() => {
