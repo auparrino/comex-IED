@@ -372,6 +372,8 @@ export default function WorldMap({
 
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
+      .translateExtent([[0, 0], [width, height]])
+      .extent([[0, 0], [width, height]])
       .on('zoom', (event) => {
         zoomG.attr('transform', event.transform);
         zoomTransformRef.current = event.transform;
@@ -454,6 +456,12 @@ export default function WorldMap({
 
         const totals = effectiveTotals[name];
         const productLabel = selectedProductLabel ? `<div class="tt-context">${escapeHtml(selectedProductLabel)}</div>` : '';
+        // The "active metric" line duplicates Balance / Exports / Imports rows
+        // for the modes that already appear above. Only show it for "total".
+        const showMetricRow = viewMode === 'total';
+        const metricRow = showMetricRow
+          ? `<div class="tt-row"><span class="tt-metric">${escapeHtml(getMetricLabel(viewMode))}</span> ${fmt(Math.abs(getMetricValue(totals, viewMode)))}</div>`
+          : '';
         tooltip.style.display = 'block';
         tooltip.innerHTML = `
           <strong>${escapeHtml(name)}</strong>
@@ -461,7 +469,7 @@ export default function WorldMap({
           <div class="tt-row"><span class="tt-exp">Exports FOB</span> ${fmt(totals.exp)}</div>
           <div class="tt-row"><span class="tt-imp">Imports CIF</span> ${fmt(totals.imp)}</div>
           <div class="tt-row"><span class="tt-bal">Balance</span> ${fmt(totals.balance)}</div>
-          <div class="tt-row"><span class="tt-metric">${escapeHtml(getMetricLabel(viewMode))}</span> ${fmt(Math.abs(getMetricValue(totals, viewMode)))}</div>
+          ${metricRow}
         `;
       })
       .on('mousemove', (event) => {
