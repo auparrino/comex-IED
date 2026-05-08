@@ -93,15 +93,34 @@ function ProductMini({ items, total, flow }) {
   );
 }
 
-function deltaLabel(a, b) {
-  if (b === 0 && a === 0) return { text: '—', cls: 'neutral' };
-  if (b === 0) return { text: '+∞', cls: 'pos' };
+function deltaPercent(a, b, labelA, labelB) {
+  // Used for flows that are always non-negative (Exp / Imp).
+  // Shows how much A differs vs B as a directional arrow + percentage.
+  if (a === b && a === 0) return { text: '—', cls: 'neutral', title: 'Sin datos' };
+  if (b === 0) return { text: `↑ ∞`, cls: 'neutral', title: `${labelB} no tiene operaciones registradas` };
+  if (a === 0) return { text: `↓ 100%`, cls: 'neutral', title: `${labelA} no tiene operaciones registradas` };
   const diff = a - b;
   const pct = (diff / Math.abs(b)) * 100;
-  const sign = diff >= 0 ? '+' : '';
+  const arrow = diff >= 0 ? '↑' : '↓';
+  const verb = diff >= 0 ? 'mayor' : 'menor';
   return {
-    text: `${sign}${pct.toFixed(0)}%`,
-    cls: diff >= 0 ? 'pos' : 'neg',
+    text: `${arrow} ${Math.abs(pct).toFixed(0)}%`,
+    cls: 'neutral',
+    title: `${labelA} es ${Math.abs(pct).toFixed(0)}% ${verb} que ${labelB}`,
+  };
+}
+
+function deltaAbsolute(a, b, labelA, labelB) {
+  // Used for Balance, where signs can flip and a % ratio is misleading.
+  const diff = a - b;
+  if (diff === 0) return { text: '—', cls: 'neutral', title: 'Iguales' };
+  const sign = diff >= 0 ? '+' : '−';
+  const cls = diff >= 0 ? 'pos' : 'neg';
+  const verb = diff >= 0 ? 'mayor' : 'menor';
+  return {
+    text: `${sign}${fmt(Math.abs(diff))}`,
+    cls,
+    title: `Balance de ${labelA} es ${sign}${fmt(Math.abs(diff))} ${verb} que el de ${labelB}`,
   };
 }
 
@@ -130,9 +149,9 @@ export default function CompareCountriesPanel({
     });
   }, [a.yearlyData, b.yearlyData, data.years]);
 
-  const dExp = deltaLabel(a.totals.exp, b.totals.exp);
-  const dImp = deltaLabel(a.totals.imp, b.totals.imp);
-  const dBal = deltaLabel(a.totals.balance, b.totals.balance);
+  const dExp = deltaPercent(a.totals.exp, b.totals.exp, countryA, countryB);
+  const dImp = deltaPercent(a.totals.imp, b.totals.imp, countryA, countryB);
+  const dBal = deltaAbsolute(a.totals.balance, b.totals.balance, countryA, countryB);
 
   return (
     <div className="country-panel compare-panel">
@@ -141,7 +160,10 @@ export default function CompareCountriesPanel({
           <h2>Comparación</h2>
           <p className="panel-subtitle">{yearRange}</p>
         </div>
-        <p className="compare-help">Tocá un país para cerrar esa columna y dejar solo el otro.</p>
+        <p className="compare-help">
+          Tocá un país para cerrar esa columna y dejar solo el otro.
+          {' '}Las flechas (↑/↓) muestran cuánto difiere <strong>{countryA}</strong> respecto a <strong>{countryB}</strong>.
+        </p>
         <div className="compare-headers">
           <button
             className="compare-country-header side-a"
@@ -168,7 +190,7 @@ export default function CompareCountriesPanel({
           <div className="compare-kpi-cell side-a">
             <span className="compare-kpi-value exports">{fmt(a.totals.exp)}</span>
           </div>
-          <div className="compare-kpi-label">
+          <div className="compare-kpi-label" title={dExp.title}>
             <span>Exp FOB</span>
             <span className={`compare-delta ${dExp.cls}`}>{dExp.text}</span>
           </div>
@@ -180,7 +202,7 @@ export default function CompareCountriesPanel({
           <div className="compare-kpi-cell side-a">
             <span className="compare-kpi-value imports">{fmt(a.totals.imp)}</span>
           </div>
-          <div className="compare-kpi-label">
+          <div className="compare-kpi-label" title={dImp.title}>
             <span>Imp CIF</span>
             <span className={`compare-delta ${dImp.cls}`}>{dImp.text}</span>
           </div>
@@ -194,8 +216,8 @@ export default function CompareCountriesPanel({
               {a.totals.balance >= 0 ? '+' : ''}{fmt(a.totals.balance)}
             </span>
           </div>
-          <div className="compare-kpi-label">
-            <span>Balance</span>
+          <div className="compare-kpi-label" title={dBal.title}>
+            <span>Δ Balance</span>
             <span className={`compare-delta ${dBal.cls}`}>{dBal.text}</span>
           </div>
           <div className="compare-kpi-cell side-b">

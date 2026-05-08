@@ -154,11 +154,14 @@
   font-size: 0.78rem;
   font-weight: 700;
   margin-top: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
 .compare-delta.pos { color: var(--blue); }
 .compare-delta.neg { color: var(--red); }
-.compare-delta.neutral { color: var(--text-dim); }
+.compare-delta.neutral { color: var(--text-muted); }
+
+.compare-kpi-label[title] { cursor: help; }
 
 /* Sections */
 .compare-section-title {
