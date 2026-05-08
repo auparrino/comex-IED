@@ -125,6 +125,27 @@
   border-left: 2px solid var(--side-b);
 }
 
+.compare-kpi-cell.stack {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  padding: 6px 10px;
+}
+
+.compare-kpi-cell.stack.side-b {
+  align-items: flex-start;
+}
+
+.compare-kpi-sub {
+  font-size: 0.66rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.compare-kpi-sub.surplus { color: var(--blue); }
+.compare-kpi-sub.deficit { color: var(--red); }
+
 .compare-kpi-value {
   font-size: 0.95rem;
   font-weight: 700;

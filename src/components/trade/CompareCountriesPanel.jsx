@@ -207,6 +207,16 @@ export default function CompareCountriesPanel({
   const dImp = compareRatio(a.totals.imp, b.totals.imp, countryA, countryB);
   const dBal = compareBalance(a.totals.balance, b.totals.balance, countryA, countryB);
 
+  const aTotalTrade = a.totals.exp + a.totals.imp;
+  const bTotalTrade = b.totals.exp + b.totals.imp;
+  const aBalanceRatio = aTotalTrade > 0 ? (a.totals.balance / aTotalTrade) * 100 : null;
+  const bBalanceRatio = bTotalTrade > 0 ? (b.totals.balance / bTotalTrade) * 100 : null;
+  const fmtBalanceRatio = (r) => {
+    if (r === null) return null;
+    const sign = r >= 0 ? '+' : '';
+    return `${sign}${r.toFixed(0)}% del comercio`;
+  };
+
   return (
     <div className="country-panel compare-panel">
       <div className="compare-panel-header">
@@ -267,19 +277,29 @@ export default function CompareCountriesPanel({
           </div>
         </div>
         <div className="compare-kpi-row">
-          <div className="compare-kpi-cell side-a">
+          <div className="compare-kpi-cell side-a stack">
             <span className={`compare-kpi-value ${a.totals.balance >= 0 ? 'surplus' : 'deficit'}`}>
               {a.totals.balance >= 0 ? '+' : ''}{fmt(a.totals.balance)}
             </span>
+            {aBalanceRatio !== null && (
+              <span className={`compare-kpi-sub ${a.totals.balance >= 0 ? 'surplus' : 'deficit'}`}>
+                {fmtBalanceRatio(aBalanceRatio)}
+              </span>
+            )}
           </div>
           <div className="compare-kpi-label" title={dBal.title}>
             <span className="compare-kpi-name">Balance</span>
             <span className={`compare-delta ${dBal.cls}`}>{dBal.text}</span>
           </div>
-          <div className="compare-kpi-cell side-b">
+          <div className="compare-kpi-cell side-b stack">
             <span className={`compare-kpi-value ${b.totals.balance >= 0 ? 'surplus' : 'deficit'}`}>
               {b.totals.balance >= 0 ? '+' : ''}{fmt(b.totals.balance)}
             </span>
+            {bBalanceRatio !== null && (
+              <span className={`compare-kpi-sub ${b.totals.balance >= 0 ? 'surplus' : 'deficit'}`}>
+                {fmtBalanceRatio(bBalanceRatio)}
+              </span>
+            )}
           </div>
         </div>
       </div>
