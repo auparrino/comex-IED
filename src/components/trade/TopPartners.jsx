@@ -46,7 +46,7 @@ const CONCEPTS = [
 
 export default function TopPartners({
   countries, summary, selectedYears,
-  selectedCountry, onSelect,
+  selectedCountry, comparisonCountry, onSelect,
   productMapData, selectedProduct,
   onBlocHighlight,
   onSelectBloc,
@@ -55,6 +55,7 @@ export default function TopPartners({
   viewMode,
   onViewModeChange,
 }) {
+  const isSelectedName = (name) => name === selectedCountry || name === comparisonCountry;
   const [search, setSearch] = useState('');
   const [activeBlocs, setActiveBlocs] = useState(new Set());
   const [expandedBloc, setExpandedBloc] = useState(null);
@@ -299,7 +300,7 @@ export default function TopPartners({
                 {isExpanded && c.members.map(m => (
                   <button
                     key={m.name}
-                    className={`partner-row sub-row ${m.name === selectedCountry ? 'selected' : ''}`}
+                    className={`partner-row sub-row ${isSelectedName(m.name) ? 'selected' : ''} ${m.name === comparisonCountry ? 'compare' : ''}`}
                     onClick={() => onSelect(m.name)}
                   >
                     <span className="rank"></span>
@@ -318,7 +319,7 @@ export default function TopPartners({
           return (
             <button
               key={c.name}
-              className={`partner-row ${c.name === selectedCountry ? 'selected' : ''}`}
+              className={`partner-row ${isSelectedName(c.name) ? 'selected' : ''} ${c.name === comparisonCountry ? 'compare' : ''}`}
               onClick={() => onSelect(c.name)}
             >
               <span className="rank">{rank}</span>

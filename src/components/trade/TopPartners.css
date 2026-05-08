@@ -154,6 +154,16 @@
   outline: 1px solid rgba(102, 155, 188, 0.3);
 }
 
+.partner-row.compare {
+  background: rgba(160, 81, 149, 0.12);
+  outline: 1px solid rgba(160, 81, 149, 0.45);
+}
+
+.partner-row.selected.compare {
+  background: rgba(160, 81, 149, 0.12);
+  outline: 1px solid rgba(160, 81, 149, 0.45);
+}
+
 .partner-row .rank {
   color: var(--text-dim);
   width: 22px;

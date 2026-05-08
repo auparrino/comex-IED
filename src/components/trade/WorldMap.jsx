@@ -175,6 +175,7 @@ export default function WorldMap({
   selectedYear,
   selectedYears,
   selectedCountry,
+  comparisonCountry,
   onSelectCountry,
   reporterCoords,
   selectedProduct,
@@ -185,6 +186,7 @@ export default function WorldMap({
 }) {
   void selectedYear;
   blocHighlight = blocHighlight || EMPTY_SET;
+  const isCountrySelected = (name) => name && (name === selectedCountry || name === comparisonCountry);
 
   const svgRef = useRef();
   const tooltipRef = useRef();
@@ -289,14 +291,16 @@ export default function WorldMap({
 
   const flowCountries = useMemo(() => {
     if (!showFlows) return [];
-    if (selectedCountry && effectiveTotals[selectedCountry]) return [selectedCountry];
+    const explicit = [selectedCountry, comparisonCountry]
+      .filter(c => c && effectiveTotals[c]);
+    if (explicit.length > 0) return explicit;
 
     const threshold = tradeMagnitudeMax * 0.08;
     return rankedCountries
       .filter(([, totals]) => totals.total >= threshold)
       .slice(0, GLOBAL_FLOW_LIMIT)
       .map(([name]) => name);
-  }, [showFlows, selectedCountry, effectiveTotals, rankedCountries, tradeMagnitudeMax]);
+  }, [showFlows, selectedCountry, comparisonCountry, effectiveTotals, rankedCountries, tradeMagnitudeMax]);
 
   const selectedCountryTotals = selectedCountry ? effectiveTotals[selectedCountry] : null;
   const hubCoords = reporterCoords || [-34.6, -58.4];
@@ -409,20 +413,20 @@ export default function WorldMap({
       })
       .attr('stroke', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
-        if (name && name === selectedCountry) return COLORS.highlight;
+        if (isCountrySelected(name)) return COLORS.highlight;
         if (name && blocHighlight.size > 0 && blocHighlight.has(name)) return COLORS.highlight;
         return NO_TRADE_STROKE;
       })
       .attr('stroke-width', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
-        if (name && name === selectedCountry) return 2.5;
+        if (isCountrySelected(name)) return 2.5;
         if (name && blocHighlight.size > 0 && blocHighlight.has(name)) return 1.6;
         return 0.55;
       })
       .attr('opacity', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
-        if (!selectedCountry) return 1;
-        if (name === selectedCountry) return 1;
+        if (!selectedCountry && !comparisonCountry) return 1;
+        if (isCountrySelected(name)) return 1;
         if (name && effectiveTotals[name]) return 0.42;
         return 0.78;
       })
@@ -481,7 +485,7 @@ export default function WorldMap({
       .attr('r', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
         const totals = effectiveTotals[name];
-        return selectedCountry === name ? 5.5 : 2.8 + valueScale(getMetricValue(totals, viewMode)) * 2;
+        return isCountrySelected(name) ? 5.5 : 2.8 + valueScale(getMetricValue(totals, viewMode)) * 2;
       })
       .attr('fill', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
@@ -491,8 +495,8 @@ export default function WorldMap({
       .attr('stroke-width', 1.1)
       .attr('opacity', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
-        if (!selectedCountry) return 0.95;
-        return name === selectedCountry ? 1 : 0.5;
+        if (!selectedCountry && !comparisonCountry) return 0.95;
+        return isCountrySelected(name) ? 1 : 0.5;
       })
       .style('cursor', 'pointer')
       .on('click', (event, d) => {
@@ -629,6 +633,7 @@ export default function WorldMap({
     worldData,
     effectiveTotals,
     selectedCountry,
+    comparisonCountry,
     numIdToName,
     onSelectCountry,
     hubCoords,

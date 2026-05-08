@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useTradeData, aggregateProductSelectionByCountry } from '../../hooks/useTradeData';
 import WorldMap from './WorldMap';
 import CountryPanel from './CountryPanel';
+import CompareCountriesPanel from './CompareCountriesPanel';
 import GlobalOverview from './GlobalOverview';
 import YearRangeSelector from './YearRangeSelector';
 import TopPartners from './TopPartners';
@@ -13,7 +14,17 @@ import './TradeSection.css';
 
 export default function TradeSection() {
   const data = useTradeData();
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  // Pair of selected countries: [primary, secondary]
+  // Solo selection → [primary, null]; comparison mode → [primary, secondary]
+  const [countrySelection, setCountrySelection] = useState({ primary: null, secondary: null });
+  const selectedCountry = countrySelection.primary;
+  const comparisonCountry = countrySelection.secondary;
+  const setSelectedCountry = useCallback((value) => {
+    setCountrySelection(prev => {
+      const next = typeof value === 'function' ? value(prev.primary) : value;
+      return { primary: next, secondary: prev.secondary };
+    });
+  }, []);
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [yearFrom, setYearFrom] = useState(null);
   const [yearTo, setYearTo] = useState(null);
@@ -31,7 +42,7 @@ export default function TradeSection() {
 
   // Reset state when reporter changes
   useEffect(() => {
-    setSelectedCountry(null);
+    setCountrySelection({ primary: null, secondary: null });
     setShowAnalysis(false);
     setSelectedProduct(null);
     setProductMapData(null);
@@ -146,20 +157,50 @@ export default function TradeSection() {
   }, []);
 
   const handleSelectCountry = useCallback((name) => {
-    setSelectedCountry(prev => prev === name ? null : name);
     setSelectedBloc(null);
     setShowAnalysis(false);
+    setCountrySelection(({ primary, secondary }) => {
+      // Click on primary: promote secondary if any, else clear
+      if (primary === name) {
+        return { primary: secondary, secondary: null };
+      }
+      // Click on secondary: close secondary
+      if (secondary === name) {
+        return { primary, secondary: null };
+      }
+      // No primary yet: set primary
+      if (!primary) {
+        return { primary: name, secondary: null };
+      }
+      // Has primary, no secondary: enter compare mode
+      if (!secondary) {
+        return { primary, secondary: name };
+      }
+      // Both filled, picking a different country: replace primary, clear comparison
+      return { primary: name, secondary: null };
+    });
+  }, []);
+
+  const handleCloseComparisonSide = useCallback((side) => {
+    setCountrySelection(({ primary, secondary }) => {
+      if (side === 'primary') {
+        return { primary: secondary, secondary: null };
+      }
+      return { primary, secondary: null };
+    });
   }, []);
 
   const handleSelectBloc = useCallback((key) => {
     setSelectedBloc(prev => prev === key ? null : key);
-    setSelectedCountry(null);
+    setCountrySelection({ primary: null, secondary: null });
     setShowAnalysis(false);
   }, []);
 
   const handleToggleAnalysis = useCallback(() => {
     setShowAnalysis(prev => !prev);
-    if (!showAnalysis) setSelectedCountry(null);
+    if (!showAnalysis) {
+      setCountrySelection({ primary: null, secondary: null });
+    }
   }, [showAnalysis]);
 
   if (data.loading) {
@@ -175,6 +216,7 @@ export default function TradeSection() {
     return <div className="error-screen">Error: {data.error}</div>;
   }
 
+  const isComparing = !!(selectedCountry && comparisonCountry);
   const hasPanel = selectedCountry || selectedBloc || showAnalysis;
   const reporterName = activeReporterConfig?.name || 'Argentina';
 
@@ -251,6 +293,7 @@ export default function TradeSection() {
               selectedYear={selectedYear}
               selectedYears={selectedYears}
               selectedCountry={selectedCountry}
+              comparisonCountry={comparisonCountry}
               onSelectCountry={handleSelectCountry}
               reporterCoords={activeReporterConfig?.coords || [-34.6, -58.4]}
               selectedProduct={selectedProduct}
@@ -264,6 +307,7 @@ export default function TradeSection() {
               summary={data.summary}
               selectedYears={selectedYears}
               selectedCountry={selectedCountry}
+              comparisonCountry={comparisonCountry}
               onSelect={handleSelectCountry}
               selectedProduct={selectedProduct}
               productMapData={productMapData}
@@ -275,7 +319,18 @@ export default function TradeSection() {
               onViewModeChange={setViewMode}
             />
           </div>
-          {selectedCountry && (
+          {selectedCountry && isComparing && (
+            <CompareCountriesPanel
+              countryA={selectedCountry}
+              countryB={comparisonCountry}
+              data={data}
+              selectedYears={selectedYears}
+              onCloseSide={handleCloseComparisonSide}
+              selectedProduct={selectedProduct}
+              productMapData={productMapData}
+            />
+          )}
+          {selectedCountry && !isComparing && (
             <CountryPanel
               country={selectedCountry}
               data={data}
