@@ -504,14 +504,16 @@ export default function WorldMap({
       .attr('r', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
         const totals = effectiveTotals[name];
-        return isCountrySelected(name) ? 5.5 : 2.8 + valueScale(getMetricValue(totals, viewMode)) * 2;
+        // Tiny by default so they don't cover other countries; grow only
+        // for highly-traded partners or when the country is selected.
+        return isCountrySelected(name) ? 4.5 : 1.6 + valueScale(getMetricValue(totals, viewMode)) * 1.4;
       })
       .attr('fill', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
         return getCountryFill(effectiveTotals[name]);
       })
       .attr('stroke', '#fff8eb')
-      .attr('stroke-width', 1.1)
+      .attr('stroke-width', 0.6)
       .attr('opacity', (d) => {
         const name = numIdToName[parseInt(d.id, 10)];
         if (!selectedCountry && !comparisonCountry) return 0.95;
@@ -537,11 +539,19 @@ export default function WorldMap({
         .range(selectedCountry ? [3.6, 7] : [2.2, 4.6]);
 
       for (const name of flowCountries) {
-        const coords = getCountryCoords(name);
         const totals = effectiveTotals[name];
-        if (!coords || !totals || !hubProj) continue;
+        if (!totals || !hubProj) continue;
 
-        const targetProj = projection([coords[1], coords[0]]);
+        // Prefer the curated coordinate; fall back to the country feature's
+        // centroid so even tiny / unmapped countries (e.g. Rwanda) get flows.
+        const coords = getCountryCoords(name);
+        let targetProj = coords ? projection([coords[1], coords[0]]) : null;
+        if (!targetProj) {
+          const feature = countries.features.find(
+            f => numIdToName[parseInt(f.id, 10)] === name
+          );
+          if (feature) targetProj = path.centroid(feature);
+        }
         if (!targetProj) continue;
 
         const dx = targetProj[0] - hubProj[0];
