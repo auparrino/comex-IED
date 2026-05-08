@@ -217,6 +217,27 @@
 .val-col.surplus { color: var(--blue); }
 .val-col.deficit { color: var(--red); }
 
+.partner-row .val-col-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  width: 64px;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.partner-row .val-col-stack .val-col {
+  width: auto;
+}
+
+.partner-row .val-col-pct {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ── Bloc rows ─── */
 .bloc-group {
   display: flex;

@@ -128,6 +128,17 @@ export default function TopPartners({
       .filter(Boolean);
   }, [countries, summary, selectedYears, productMapData, selectedProduct]);
 
+  // Global totals across all partners (denominator for % share)
+  const globalTotals = useMemo(() => {
+    let exp = 0, imp = 0, trade = 0;
+    for (const c of ranked) {
+      exp += c.totalExports;
+      imp += c.totalImports;
+      trade += c.totalTrade;
+    }
+    return { exp, imp, trade };
+  }, [ranked]);
+
   // Sort function based on concept
   const sortVal = useCallback((item) => {
     if (concept === 'exp') return item.totalExports;
@@ -226,10 +237,41 @@ export default function TopPartners({
     );
   };
 
+  const fmtPct = (num, denom) => {
+    if (!denom || denom <= 0) return null;
+    const pct = (num / denom) * 100;
+    if (pct < 0.05) return '<0.1%';
+    if (pct < 10) return `${pct.toFixed(1)}%`;
+    return `${pct.toFixed(0)}%`;
+  };
+
   const renderValue = (item) => {
-    if (concept === 'exp') return <span className="val-col surplus">{fmt(item.totalExports)}</span>;
-    if (concept === 'imp') return <span className="val-col deficit">{fmt(item.totalImports)}</span>;
-    return <span className={`val-col ${item.balance >= 0 ? 'surplus' : 'deficit'}`}>{fmt(item.balance)}</span>;
+    if (concept === 'exp') {
+      const pct = fmtPct(item.totalExports, globalTotals.exp);
+      return (
+        <span className="val-col-stack" title={pct ? `${pct} de las exportaciones` : ''}>
+          <span className="val-col surplus">{fmt(item.totalExports)}</span>
+          {pct && <span className="val-col-pct">{pct}</span>}
+        </span>
+      );
+    }
+    if (concept === 'imp') {
+      const pct = fmtPct(item.totalImports, globalTotals.imp);
+      return (
+        <span className="val-col-stack" title={pct ? `${pct} de las importaciones` : ''}>
+          <span className="val-col deficit">{fmt(item.totalImports)}</span>
+          {pct && <span className="val-col-pct">{pct}</span>}
+        </span>
+      );
+    }
+    // total view: show balance + share of total trade
+    const pct = fmtPct(item.totalTrade, globalTotals.trade);
+    return (
+      <span className="val-col-stack" title={pct ? `${pct} del comercio total` : ''}>
+        <span className={`val-col ${item.balance >= 0 ? 'surplus' : 'deficit'}`}>{fmt(item.balance)}</span>
+        {pct && <span className="val-col-pct">{pct}</span>}
+      </span>
+    );
   };
 
   // Rank counter for non-bloc rows
