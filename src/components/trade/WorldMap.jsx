@@ -589,18 +589,8 @@ export default function WorldMap({
       );
 
       if (selectedFeature) {
-        const [[x0, y0], [x1, y1]] = path.bounds(selectedFeature);
-        const dx = x1 - x0;
-        const dy = y1 - y0;
-
-        if (dx > 0 && dy > 0) {
-          const scale = Math.max(1.4, Math.min(5.5, 0.84 / Math.max(dx / width, dy / height)));
-          const tx = width / 2 - scale * ((x0 + x1) / 2);
-          const ty = height / 2 - scale * ((y0 + y1) / 2);
-          const transform = d3.zoomIdentity.translate(tx, ty).scale(scale);
-          svg.transition().duration(450).call(zoom.transform, transform);
-        }
-
+        // Don't auto-zoom on selection — the user controls zoom with the wheel.
+        // Just place the chip on top of the selected country.
         const coords = getCountryCoords(selectedCountry);
         const targetProj = coords ? projection([coords[1], coords[0]]) : path.centroid(selectedFeature);
         if (targetProj) {
