@@ -59,6 +59,7 @@ export default function TopPartners({
   const [search, setSearch] = useState('');
   const [activeBlocs, setActiveBlocs] = useState(new Set());
   const [expandedBloc, setExpandedBloc] = useState(null);
+  const [collapsed, setCollapsed] = useState(false);
 
   // Derive concept directly from viewMode (no local state needed)
   const concept = viewMode === 'exports' ? 'exp' : viewMode === 'imports' ? 'imp' : 'total';
@@ -278,16 +279,26 @@ export default function TopPartners({
   let rank = 0;
 
   return (
-    <div className="top-partners">
+    <div className={`top-partners ${collapsed ? 'collapsed' : ''}`}>
       <div className="partners-header">
         <h3 className="section-title">Socios comerciales ({ranked.length})</h3>
-        <input
-          type="text"
-          className="partner-search"
-          placeholder="Buscar país..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
+        {!collapsed && (
+          <input
+            type="text"
+            className="partner-search"
+            placeholder="Buscar país..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        )}
+        <button
+          type="button"
+          className="top-partners-toggle"
+          onClick={() => setCollapsed(c => !c)}
+          title={collapsed ? 'Expandir lista' : 'Contraer lista para agrandar el mapa'}
+        >
+          {collapsed ? '▴ Mostrar' : '▾ Contraer'}
+        </button>
       </div>
 
       {/* Concept toggle + bloc chips */}

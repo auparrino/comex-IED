@@ -2,10 +2,41 @@
   padding: 0;
   background: var(--bg-card);
   border-top: 1px solid var(--border);
-  flex: 0 1 40%;
+  flex: 0 0 auto;
+  height: 26vh;
+  min-height: 140px;
+  max-height: 320px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+.top-partners.collapsed {
+  height: 44px;
+  min-height: 44px;
+}
+
+.top-partners.collapsed .partners-toolbar,
+.top-partners.collapsed .partners-list {
+  display: none;
+}
+
+.top-partners-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.top-partners-toggle:hover {
+  color: var(--text);
+  background: var(--bg-card-hover);
 }
 
 .partners-header {

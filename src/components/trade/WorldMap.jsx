@@ -194,6 +194,7 @@ export default function WorldMap({
   const zoomBehaviorRef = useRef(null);
   const [worldData, setWorldData] = useState(worldDataCache);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
   const viewMode = viewModeProp ?? 'balance';
   const setViewMode = onViewModeChange ?? (() => {});
   const [showFlows, setShowFlows] = useState(true);
@@ -319,11 +320,13 @@ export default function WorldMap({
     const ro = new ResizeObserver((entries) => {
       for (const entry of entries) {
         setContainerWidth(entry.contentRect.width);
+        setContainerHeight(entry.contentRect.height);
       }
     });
 
     ro.observe(container);
     setContainerWidth(container.clientWidth);
+    setContainerHeight(container.clientHeight);
     return () => ro.disconnect();
   }, []);
 
@@ -348,7 +351,11 @@ export default function WorldMap({
 
     const svg = d3.select(svgRef.current);
     const width = containerWidth;
-    const height = Math.min(width * 0.56, window.innerHeight - 210);
+    // Prefer the actual container height (set by flex layout) so the map
+    // fills the available space. Fall back to a width-based ratio.
+    const height = containerHeight && containerHeight > 240
+      ? containerHeight
+      : Math.min(width * 0.56, window.innerHeight - 210);
 
     svg.attr('viewBox', `0 0 ${width} ${height}`);
     svg.selectAll('*').remove();
@@ -642,6 +649,7 @@ export default function WorldMap({
     blocHighlight,
     countryTotals,
     containerWidth,
+    containerHeight,
     flowCountries,
     exportMagnitudeMax,
     importMagnitudeMax,

@@ -1,7 +1,7 @@
 .world-map-container {
   position: relative;
-  flex: 1 1 60%;
-  min-height: 250px;
+  flex: 1 1 auto;
+  min-height: 0;
   background:
     radial-gradient(circle at top left, rgba(255, 248, 235, 0.98), rgba(248, 233, 205, 0.92) 32%, rgba(242, 224, 192, 0.82) 100%);
   overflow: hidden;
