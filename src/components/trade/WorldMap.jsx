@@ -252,9 +252,15 @@ export default function WorldMap({
   const filterChips = useMemo(() => {
     const chips = [{ label: 'Years', value: getYearFilterLabel(selectedYears) }];
     if (selectedProductLabel) chips.push({ label: 'Product', value: selectedProductLabel });
-    if (selectedCountry) chips.push({ label: 'Country', value: selectedCountry });
+    if (selectedCountry && comparisonCountry) {
+      chips.push({ label: 'Compare', value: `${selectedCountry} vs ${comparisonCountry}` });
+    } else if (selectedCountry) {
+      chips.push({ label: 'Country', value: selectedCountry });
+    } else if (comparisonCountry) {
+      chips.push({ label: 'Country', value: comparisonCountry });
+    }
     return chips;
-  }, [selectedYears, selectedProductLabel, selectedCountry]);
+  }, [selectedYears, selectedProductLabel, selectedCountry, comparisonCountry]);
 
   const metricValues = useMemo(
     () => Object.values(effectiveTotals).map(item => Math.abs(getMetricValue(item, viewMode))),
