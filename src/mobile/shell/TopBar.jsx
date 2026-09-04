@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useReporter, REPORTER_META } from '../context/ReporterContext';
-import { forceDesktop } from '../hooks/useMobileBreakpoint';
+import { setViewMode } from '../hooks/useMobileBreakpoint';
 import BottomSheet from './BottomSheet';
 
 export default function TopBar({ title, onBack }) {
@@ -44,7 +44,7 @@ export default function TopBar({ title, onBack }) {
           <button
             className="m-row"
             style={{ justifyContent: 'space-between', background: 'transparent' }}
-            onClick={() => forceDesktop(true)}
+            onClick={() => setViewMode('desktop')}
           >
             <div className="m-row__main">
               <div className="m-row__title">Ver versión desktop</div>

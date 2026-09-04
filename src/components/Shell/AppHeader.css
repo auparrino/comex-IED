@@ -32,3 +32,9 @@
     display: block;
   }
 }
+
+/* Con la vista desktop forzada el viewport pasa a ser ancho y el media query
+   de arriba deja de aplicar: sin esto no habría forma de volver a mobile. */
+:root[data-view-mode='desktop'] .switch-to-mobile-btn {
+  display: block;
+}
